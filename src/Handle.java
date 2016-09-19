@@ -2,6 +2,7 @@
  * Handle class definition
  *
  * @author CS3114 Instructors and TAs
+ * @author Enrique Prieto
  * @version 9/15/2016
  */
 
@@ -11,6 +12,7 @@ public class Handle
      * The position for the associated message in the memory pool
      */
     int thePos;
+    int E;
 
 
     // ----------------------------------------------------------
@@ -22,6 +24,7 @@ public class Handle
      */
     public Handle(int p) {
         thePos = p;
+        E=p;
     }
 
 
