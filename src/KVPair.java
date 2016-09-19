@@ -1,6 +1,7 @@
 /**
  * KVPair class definition: Pretty specific for Project 2
  * @author CS3114 Instructor and TAs
+ * @author Nathan Mussie
  * @version 9/15/2016
  */
 public class KVPair implements Comparable<KVPair> {
