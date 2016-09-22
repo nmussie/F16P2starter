@@ -27,7 +27,7 @@ public class HandleTest extends TestCase {
         assertEquals(myHandle.compareTo(lessHandle), -1);
         assertEquals(myHandle.compareTo(sameHandle), 0);
         assertEquals(myHandle.compareTo(moreHandle), 1);
-        assertEquals(myHandle.pos(), 1);
+        assertEquals(myHandle.getRef(), 1);
         assertEquals(myHandle.toString(), "1");
     }
 }

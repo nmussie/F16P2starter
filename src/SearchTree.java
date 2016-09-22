@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * {Project Description Here}
  */
@@ -31,11 +35,71 @@
 // letter of this restriction.
 
 public class SearchTree {
+    
+    private Scanner scanner;
+    private CommandProcessor commandPro;
+    
     /**
      * @param args
      *      Command line parameters.
+     * @throws FileNotFoundException 
      */
-    public static void main(String[] args) {
-        // This is the main file for the program.
+    public static void main(String[] args) throws FileNotFoundException {
+        @SuppressWarnings("unused")
+        SearchTree sTree = new SearchTree(Integer.parseInt(args[0]), 
+                Integer.parseInt(args[1]), args[2]);
+    }
+
+    /**
+     * This method is parsing the command line by line and executes the
+     * instructions given to it.
+     * 
+     * @param hSize
+     *            of the hash table's parameter
+     * @param bSize
+     *            size of free blocks
+     * @param file
+     *            from the string of the command file
+     * @throws FileNotFoundException
+     */
+    public SearchTree(int hSize, int bSize, String file) 
+            throws FileNotFoundException {
+        commandPro = new CommandProcessor(hSize, bSize);
+        File fp = new File(file);
+        scanner = new Scanner(fp);
+        commands();
+    }
+
+    /**
+     * the first word of each line in the input file is a command and So what
+     * this method does is execute command.
+     */
+    private void commands() {
+        while (scanner.hasNextLine()) {
+            String command = scanner.next();
+            String input = scanner.nextLine().trim();
+            if (command.equals("insert")) {
+                commandPro.insert(input);
+            } 
+            else if (command.equals("remove")) {
+                commandPro.remove(input);
+            } 
+            else {
+                print(commandPro.toString(input));
+            }
+        }
+
+    }
+
+    /**
+     * prints the string it is given
+     * 
+     * @param in
+     *            the string that we want to print
+     * @return returns true when we want to print.
+     */
+    public boolean print(String in) {
+        System.out.println(in);
+        return true;
     }
 }

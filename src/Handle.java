@@ -34,10 +34,10 @@ public class Handle
      * @return standard values of -1, 0, 1
      */
     public int compareTo(Handle it) {
-        if (thePos < it.pos()) {
+        if (thePos < it.getRef()) {
             return -1;
         } 
-        else if (thePos == it.pos()) {
+        else if (thePos == it.getRef()) {
             return 0;
         } 
         else {
@@ -52,7 +52,7 @@ public class Handle
      *
      * @return The position
      */
-    public int pos() {
+    public int getRef() {
         return thePos;
     }
 
