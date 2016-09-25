@@ -12,7 +12,6 @@ public class Handle
      * The position for the associated message in the memory pool
      */
     int thePos;
-    int E;
 
 
     // ----------------------------------------------------------
@@ -24,7 +23,6 @@ public class Handle
      */
     public Handle(int p) {
         thePos = p;
-        E=p;
     }
 
 
