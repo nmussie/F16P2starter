@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-
 import student.TestCase;
 
 /**
@@ -7,20 +5,19 @@ import student.TestCase;
  * @version {Put Something Here}
  */
 public class SearchTreeTest extends TestCase {
-    private SearchTree parser;
-
     /**
-     * sets up the tests class
+     * Sets up the tests that follow. In general, used for initialization.
      */
-    public void setUp() throws FileNotFoundException {
-        parser = new SearchTree(10, 32, "P1_Input2_Sample.txt");
+    public void setUp() {
+        // Nothing Here
     }
-
+    
     /**
-     * this tests the method print
+     * Get code coverage of the class declaration.
      */
-    public void testPrint() {
-        String string = "me";
-        assertTrue(parser.print(string));
+    public void testSInit() {
+        SearchTree tree = new SearchTree();
+        assertNotNull(tree);
+        SearchTree.main(null);
     }
 }
