@@ -4,16 +4,15 @@ public class InternalNode extends Node {
     private Node left;
     private Node middle;
     private Node right;
-    private KVPair pair;
     
     
     public InternalNode() {
         super();
         
     }
-    public InternalNode(KVPair pair)
+    public InternalNode(KVPair firstPair, KVPair secPair)
     {
-        super(pair);
+        super(firstPair, secPair);
     }
 
     /**
@@ -21,8 +20,16 @@ public class InternalNode extends Node {
      * 
      * @return next node
      */
-    public Node getRight() {
+    public Node getRightChild() {
         return right;
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public boolean isLeafNode() {
+        return left == null && right == null && middle == null;
     }
 
     /**
@@ -31,7 +38,7 @@ public class InternalNode extends Node {
      * @param next
      *            sets previous node
      */
-    public void setRight(Node right) {
+    public void setRightChild(Node right) {
         this.right = right;
     }
 
@@ -40,7 +47,7 @@ public class InternalNode extends Node {
      * 
      * @return previous node
      */
-    public Node getLeft() {
+    public Node getLeftChild() {
         return left;
     }
 
@@ -50,7 +57,7 @@ public class InternalNode extends Node {
      * @param previous
      *            node that sets the previous node
      */
-    public void setLeft(Node left) {
+    public void setLeftChild(Node left) {
         this.left = left;
     }
     
@@ -59,7 +66,7 @@ public class InternalNode extends Node {
      * 
      * @return middle node
      */
-    public Node getMiddle() {
+    public Node getMiddleChild() {
         return middle;
     }
 
@@ -69,25 +76,7 @@ public class InternalNode extends Node {
      * @param middle
      *            node to be set
      */
-    public void setMiddle(Node middle) {
+    public void setMiddleChild(Node middle) {
         this.middle = middle;
     }    
-    /**
-     * Returns a KVpair
-     * 
-     * @return KVpair
-     */
-    public KVPair getData() {
-        return pair;
-    }
-
-    /**
-     * Sets a free block
-     * 
-     * @param data
-     *            of KVpair being set
-     */
-    public void setData(KVPair data) {
-        pair = data;
-    }
 }

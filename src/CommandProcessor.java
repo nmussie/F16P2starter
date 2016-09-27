@@ -31,6 +31,7 @@ public class CommandProcessor {
     private HashTable artist;
     private HashTable song;
     private MemManager mem;
+    private TTT tree;
 
     /**
      * This is the constructor of the command processor Initializes two hash
@@ -45,6 +46,7 @@ public class CommandProcessor {
         mem = new MemManager(bSize);
         artist = new HashTable("Artist", hSize, mem);
         song = new HashTable("Song", hSize, mem);
+        tree = new TTT();
     }
 
     /**
