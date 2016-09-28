@@ -29,11 +29,21 @@
 public class TTT {
 
     private Node root;
-    
+
+    /**
+     * Constructor for Tree class
+     */
     public TTT() {
         root = null;
     }
-    
+
+    /**
+     * Insert method for 2-3+ tree
+     * 
+     * @param newPair
+     *            to be inserted
+     * @return true if item is inserted
+     */
     public boolean insert(KVPair newPair) {
         if (root == null) {
             root = new LeafNode(newPair, null);
@@ -45,7 +55,7 @@ public class TTT {
         }
         return false;
     }
-    
+
     /**
      * 
      * @param pair
@@ -96,38 +106,40 @@ public class TTT {
         }
     }*/
     
-    
+    /**
+     * To string method for 2-3+ tree
+     * @return a string representation of a tree
+     */
     public String toString() {
         if (root == null) {
             return "Printing 2-3 tree:";
-        }
+        } 
         else if (root.isFull()) {
-        return "Printing 2-3 tree:\n" + root.getFirstPair().toString() 
-                + " " + root.getSecondPair().toString(); 
-        }
+            return "Printing 2-3 tree:\n" + root.getFirstPair().
+                    toString() + " " + root.getSecondPair().toString();
+        } 
         else {
             return "Printing 2-3 tree:\n" + root.getFirstPair().toString();
         }
     }
-    
-    
-    public boolean delete(KVPair pair) {
-        return false;
-    }
-    
-    public boolean contains(int key) {
-        return false;
-    }
 
-
+    /**
+     * Getter for root node
+     * 
+     * @return root
+     */
     public Node getRoot() {
         return root;
     }
 
-
+    /**
+     * Sets curr root to root
+     * 
+     * @param root
+     *            that sets curr root
+     */
     public void setRoot(Node root) {
         this.root = root;
     }
-    
 
 }

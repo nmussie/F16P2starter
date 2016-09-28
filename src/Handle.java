@@ -2,17 +2,16 @@
  * Handle class definition
  *
  * @author CS3114 Instructors and TAs
+ * @author Nathan Mussie
  * @author Enrique Prieto
  * @version 9/15/2016
  */
 
-public class Handle
-{
+public class Handle {
     /**
      * The position for the associated message in the memory pool
      */
     int thePos;
-
 
     // ----------------------------------------------------------
     /**
@@ -24,7 +23,6 @@ public class Handle
     public Handle(int p) {
         thePos = p;
     }
-
 
     // ----------------------------------------------------------
     /**
@@ -56,7 +54,6 @@ public class Handle
         return thePos;
     }
 
-
     // ----------------------------------------------------------
     /**
      * Overload toString
@@ -66,7 +63,7 @@ public class Handle
     public String toString() {
         return String.valueOf(thePos);
     }
-    
+
     /**
      * Equals method that compares two handles
      * 

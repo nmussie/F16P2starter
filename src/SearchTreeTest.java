@@ -1,4 +1,3 @@
-//import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -6,8 +5,11 @@ import java.nio.file.Paths;
 import student.TestCase;
 
 /**
- * @author {Your Name Here}
- * @version {Put Something Here}
+ * SearchTree test class
+ * 
+ * @author Nathan Mussie
+ * @author Enrique Prieto
+ * @version Fall 2016
  */
 public class SearchTreeTest extends TestCase {
     /**
@@ -26,6 +28,14 @@ public class SearchTreeTest extends TestCase {
         arg[2] = "P2_Input1_Sample.txt";
     }
 
+    /**
+     * Method to read file
+     * 
+     * @param path
+     *            of what you want to read
+     * @return the history of a file
+     * @throws IOException
+     */
     static String readFile(String path) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded);
@@ -33,13 +43,14 @@ public class SearchTreeTest extends TestCase {
 
     /**
      * Get code coverage of the class declaration.
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     public void testMInit() throws IOException {
         SearchTree mem = new SearchTree();
         assertNotNull(mem);
-        String outPut = readFile("P2_Output1_Sample.txt");
+        //String outPut = readFile("P2_Output1_Sample.txt");
         SearchTree.main(arg);
-        //assertEquals(outPut, systemOut().getHistory());
+        // assertEquals(outPut, systemOut().getHistory());
     }
 }

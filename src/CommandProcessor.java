@@ -92,7 +92,8 @@ public class CommandProcessor {
             System.out.println("The KVPair (|" + strings[0] 
                     + "|,|" + strings[1] + "|)," +
                     "(" + artist.getHandle().getRef() + "," 
-                    + song.getHandle().getRef() + ")" + " is added to the tree.");
+                    + song.getHandle().getRef() + ")" + 
+                    " is added to the tree.");
         }
         else {
             System.out.println("The KVPair (|" + strings[0] 
@@ -105,20 +106,26 @@ public class CommandProcessor {
             System.out.println("The KVPair (|" + strings[1] 
                     + "|,|" + strings[0] + "|)," +
                     "(" + song.getHandle().getRef() + "," + 
-                    artist.getHandle().getRef() + ")" + " is added to the tree.");
+                    artist.getHandle().getRef() + ")" + 
+                    " is added to the tree.");
         }
         else {
             System.out.println("The KVPair (|" + strings[1] 
                     + "|,|" + strings[0] + "|)," +
                     "(" + song.getHandle().getRef() + "," + 
-                    artist.getHandle().getRef() + ")" + " duplicates a record already in the tree.");
+                    artist.getHandle().getRef() + ")" + 
+                    " duplicates a record already in the tree.");
         }
     }
 
+    /**
+     * Prints the list command
+     * @param in string input for list
+     */
     public void list(String in) {
         int index = in.indexOf(" ");
         String command2 = in.substring(0, index);
-        String value = in.substring(index + 1);
+        //String value = in.substring(index + 1);
         if (command2.equals("artist")) {
             System.out.println("List TO-DO");
         }
@@ -126,6 +133,7 @@ public class CommandProcessor {
             System.out.println("List TO-DO");
         }
     }
+    
     /**
      * This method deals with print statements to remove artists and songs
      * 
@@ -160,6 +168,10 @@ public class CommandProcessor {
         }
     }
     
+    /**
+     * Prints and executes the delete command
+     * @param in String input for delete
+     */
     public void delete(String in) {
         //do nothing
     }
@@ -199,10 +211,10 @@ public class CommandProcessor {
             return song.toString() + "total songs: " 
                     + song.getSize();
         } 
-        else if (in.equals("blocks")){
+        else if (in.equals("blocks")) {
             return mem.dump();
         }
-        else if (in.equals("tree")){
+        else if (in.equals("tree")) {
             return tree.toString();
         }
         else {

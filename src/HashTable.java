@@ -26,6 +26,7 @@
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 public class HashTable {
+
     // initial array size
     private int tableSize;
     // the current size of array
@@ -68,7 +69,7 @@ public class HashTable {
         }
         this.mem = mem;
         morespace = false;
-        //tempHandle = new Handle(-2);
+        // tempHandle = new Handle(-2);
     }
 
     /**
@@ -85,22 +86,22 @@ public class HashTable {
         tempHandle = null;
         morespace = false;
         currentSize++;
-        /*hTable = moreSpace();*/
+        /* hTable = moreSpace(); */
         int key = getKey(value);
         if (contains(key, value)) {
             tempHandle = new Handle(hTable[key].getRef());
             currentSize--;
             return false;
         }
-        //currentSize++;
+        // currentSize++;
         hTable = moreSpace();
         if (morespace) {
-        key = getKey(value);
-        if (contains(key, value)) {
-            tempHandle = new Handle(hTable[key].getRef());
-            currentSize--;
-            return false;
-        }
+            key = getKey(value);
+            if (contains(key, value)) {
+                tempHandle = new Handle(hTable[key].getRef());
+                currentSize--;
+                return false;
+            }
         }
         hTable[key] = mem.insert(value.getBytes());
         tempHandle = new Handle(hTable[key].getRef());
@@ -118,11 +119,13 @@ public class HashTable {
 
     /**
      * Getter for handle
+     * 
      * @return current handle
      */
     public Handle getHandle() {
         return tempHandle;
     }
+
     /**
      * Gets the current size of the hash table
      * 
@@ -154,7 +157,7 @@ public class HashTable {
         int sizeDiv2 = tableSize / 2;
         Handle[] temp = new Handle[hTable.length];
         System.arraycopy(hTable, 0, temp, 0, hTable.length);
-        if (getSize() > sizeDiv2) {//it was a >
+        if (getSize() > sizeDiv2) {
             tableSize = tableSize * 2; // new table size
             // new array with new size
             hTable = new Handle[tableSize];
@@ -170,14 +173,15 @@ public class HashTable {
         }
         return hTable;
     }
+
     /**
-     * the get method that takes in byte array and returns
-     * a string 
-     * @param arr byte array from the Memory manager
+     * the get method that takes in byte array and returns a string
+     * 
+     * @param arr
+     *            byte array from the Memory manager
      * @return the string gotten from the memManager
      */
-    public String get(byte[] arr)
-    {
+    public String get(byte[] arr) {
         return new String(arr);
     }
 
@@ -213,9 +217,11 @@ public class HashTable {
      * 
      * @param key
      *            needed to be checked for probing
-     * @param array the handle array that is being iterated through
-     * @param value whose handle is going to be inserted in the handle array
-     *  
+     * @param array
+     *            the handle array that is being iterated through
+     * @param value
+     *            whose handle is going to be inserted in the handle array
+     * 
      * @return key position after probing
      */
     public int quadProb(Handle[] array, int key, String value) {
@@ -228,8 +234,8 @@ public class HashTable {
             if (array[key].equals(errorHandle) && okey < 0) {
                 okey = key;
             } 
-            else if (!array[key].equals(errorHandle) 
-                    && value.equals(get(mem.get(array[key])))) {
+            else if (!array[key].equals(errorHandle) && 
+                    value.equals(get(mem.get(array[key])))) {
                 return key;
             }
             key = (baseIndex + i * i++) % array.length;
