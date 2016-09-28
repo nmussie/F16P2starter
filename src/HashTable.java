@@ -1,4 +1,3 @@
-
 /**
  * Hash Table class, which holds methods for the Artist and Song Hash Tables
  *
@@ -36,6 +35,7 @@ public class HashTable {
     private boolean morespace;
     // tells us if it's an artist or song
     private String name;
+    private Handle tempHandle;
     private MemManager mem;
 
     /**
@@ -68,6 +68,7 @@ public class HashTable {
         }
         this.mem = mem;
         morespace = false;
+        //tempHandle = new Handle(-2);
     }
 
     /**
@@ -81,15 +82,28 @@ public class HashTable {
         if (value == null) {
             return false;
         }
+        tempHandle = null;
         morespace = false;
         currentSize++;
-        hTable = moreSpace();
+        /*hTable = moreSpace();*/
         int key = getKey(value);
         if (contains(key, value)) {
+            tempHandle = new Handle(hTable[key].getRef());
             currentSize--;
             return false;
         }
-        hTable[key] = mem.insert(value.getBytes()); 
+        //currentSize++;
+        hTable = moreSpace();
+        if (morespace) {
+        key = getKey(value);
+        if (contains(key, value)) {
+            tempHandle = new Handle(hTable[key].getRef());
+            currentSize--;
+            return false;
+        }
+        }
+        hTable[key] = mem.insert(value.getBytes());
+        tempHandle = new Handle(hTable[key].getRef());
         return true;
     }
 
@@ -102,6 +116,13 @@ public class HashTable {
         return tableSize;
     }
 
+    /**
+     * Getter for handle
+     * @return current handle
+     */
+    public Handle getHandle() {
+        return tempHandle;
+    }
     /**
      * Gets the current size of the hash table
      * 
@@ -133,7 +154,7 @@ public class HashTable {
         int sizeDiv2 = tableSize / 2;
         Handle[] temp = new Handle[hTable.length];
         System.arraycopy(hTable, 0, temp, 0, hTable.length);
-        if (getSize() > sizeDiv2) {
+        if (getSize() > sizeDiv2) {//it was a >
             tableSize = tableSize * 2; // new table size
             // new array with new size
             hTable = new Handle[tableSize];

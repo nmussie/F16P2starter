@@ -95,9 +95,20 @@ public class TTT {
             }
         }
     }*/
-
     
     
+    public String toString() {
+        if (root == null) {
+            return "Printing 2-3 tree:";
+        }
+        else if (root.isFull()) {
+        return "Printing 2-3 tree:\n" + root.getFirstPair().toString() 
+                + " " + root.getSecondPair().toString(); 
+        }
+        else {
+            return "Printing 2-3 tree:\n" + root.getFirstPair().toString();
+        }
+    }
     
     
     public boolean delete(KVPair pair) {

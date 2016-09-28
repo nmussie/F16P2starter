@@ -157,18 +157,13 @@ public class HashTableTest extends TestCase {
         array[8] = handle3;
         array[5] = handle3;
         int key = 0;    
-      /*  for (int i = 0; i < 20; i++)
-        {
-            System.out.println((key + i * i) % 20);
-        }*/
         assertEquals(4, hashTable.quadProb(array, key, respect));
         array[4] = mem.insert(respect.getBytes());
         mem.insert(socks.getBytes());
         assertEquals(9, hashTable.quadProb(array, key, socks));
         mem.insert(earring.getBytes());
         int newKey = 4;
-        assertEquals(5, hashTable.quadProb(array, newKey, earring)); 
-        
+        assertEquals(5, hashTable.quadProb(array, newKey, earring));  
         
     }
     

@@ -91,7 +91,9 @@ public abstract class Node {
         {
             setFirstPair(pair);
         }
-        swap();
+        if (isFull()) {
+            swap();
+        }
     }
     public void swap()
     {

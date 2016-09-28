@@ -46,7 +46,6 @@ public class Handle
         }
     }
 
-
     // ----------------------------------------------------------
     /**
      * Getter for position
@@ -66,5 +65,26 @@ public class Handle
      */
     public String toString() {
         return String.valueOf(thePos);
+    }
+    
+    /**
+     * Equals method that compares two handles
+     * 
+     * @param obj
+     *            that compares to other handles
+     * @return true if handle equals another handle
+     */
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass().equals(this.getClass())) {
+            Handle newObj = (Handle) obj;
+            return getRef() == newObj.getRef();
+        }
+        return false;
     }
 }

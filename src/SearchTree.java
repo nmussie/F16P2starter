@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 /**
  * {Project Description Here}
  */
@@ -31,11 +33,17 @@
 // letter of this restriction.
 
 public class SearchTree {
+    
     /**
      * @param args
-     *      Command line parameters.
+     *            Command line parameters
+     * @throws FileNotFoundException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // This is the main file for the program.
+        @SuppressWarnings("unused")
+        Parser par = new Parser(Integer.parseInt(args[0]), 
+                Integer.parseInt(args[1]), args[2]);
+
     }
 }
