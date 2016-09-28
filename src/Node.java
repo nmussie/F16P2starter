@@ -146,7 +146,6 @@ public abstract class Node {
         }
         return temp;
     }
-
     /**
      * Check first and second pairs to see where to insert to see where you can
      * insert

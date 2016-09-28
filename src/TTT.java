@@ -44,7 +44,7 @@ public class TTT {
      *            to be inserted
      * @return true if item is inserted
      */
-    public boolean insert(KVPair newPair) {
+    /*public boolean insert(KVPair newPair) {
         if (root == null) {
             root = new LeafNode(newPair, null);
             return true;
@@ -54,47 +54,75 @@ public class TTT {
             return true;
         }
         return false;
-    }
+    }*/
 
     /**
      * 
      * @param pair
      * @return
-     *//*
+     */
     public boolean insert(KVPair pair) {
         root = getToLeaf(root, pair);
         
         if (root.isFull()) {
             LeafNode bigLeaf = new LeafNode(root.addWhenFull(pair), null);
-            KVPair promote = root.getRightPair();
+            KVPair promote = root.getSecondPair();
             
+        }
+        else {
+            root.insert(pair);
         }
         return false;
     }
     
-    *//**
+    /**
+     * 
+     * @param node
+     * @param pair
+     * @return
+     */
+    public boolean contains(Node node, KVPair pair) {
+        node = getToLeaf(node, pair);
+        if (node.getFirstPair().equals(pair) || node.getSecondPair().equals(pair)) {
+            return true;
+        }
+        return false;
+    }
+    
+    private void promoteNode(LeafNode node, KVPair pair) {
+        if (node.isFull()) {
+            pair = node.addWhenFull(pair);
+            LeafNode newLeaf = new LeafNode(pair, null);
+            InternalNode intNode = new InternalNode(node.getSecondPair(), null);
+            node.setNext(newLeaf);
+            intNode.setLeftChild(node);
+            intNode.setMiddleChild(newLeaf);
+        }
+    }
+    
+    /**
      * 
      * @param node
      * @param newPair
      * @return
-     *//*
+     */
     private LeafNode getToLeaf(Node node, KVPair newPair) {
         if (node == null) { //empty tree
             return new LeafNode(newPair, null);
         }
-        if (node.isLeafNode()) { //at leaf node 
+        if (node.getClass() == LeafNode.class) { //at leaf node 
             return (LeafNode)node;
         }
         else { //get to leaf node
             
             //if newPair is smaller than left
-            if (newPair.compareTo(node.getLeftPair()) < 0) {
+            if (newPair.compareTo(node.getFirstPair()) < 0) {
                 Node leftChild = ((InternalNode) node).getLeftChild();
                 return getToLeaf(leftChild, newPair);
             }
             //if newPair is in middle of left and right
-            else if ((newPair.compareTo(node.getLeftPair()) > 0) 
-                    && newPair.compareTo(node.getRightPair()) < 0) {
+            else if ((newPair.compareTo(node.getFirstPair()) > 0) 
+                    && newPair.compareTo(node.getSecondPair()) < 0) {
                 Node middleChild = ((InternalNode) node).getRightChild();
                 return getToLeaf(middleChild, newPair);
             }
@@ -104,7 +132,7 @@ public class TTT {
                 return getToLeaf(rightChild, newPair);
             }
         }
-    }*/
+    }
     
     /**
      * To string method for 2-3+ tree
