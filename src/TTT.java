@@ -44,17 +44,48 @@ public class TTT {
      *            to be inserted
      * @return true if item is inserted
      */
-    /*public boolean insert(KVPair newPair) {
-        if (root == null) {
-            root = new LeafNode(newPair, null);
-            return true;
+    public Node insert2(Node node, KVPair newPair) {
+        if (node == null) {
+            node = new LeafNode(newPair, null);
+            return node;
         }
-        if (root.isLeafNode()) {
-            root.insert(newPair);
-            return true;
+        if (node.getClass() == LeafNode.class) {//.equals()?
+            if (!node.isFull())
+            {
+                node.insert(newPair);
+                return node;
+            }
+            else
+            {
+                newPair = promoteNode((LeafNode)node, newPair);
+                InternalNode n = new InternalNode();
+                n.setFirstPair(newPair);
+                n.setLeftChild(node);
+                n.setMiddleChild(((LeafNode) node).getNext());
+                node = n;
+                return node;
+            }
         }
-        return false;
-    }*/
+        else
+        {
+            InternalNode nroot = (InternalNode) node;
+            if (!node.isFull())
+            {
+                if (newPair.compareTo(nroot.getFirstPair()) <= 0)
+                {
+                    nroot.setLeftChild(insert2(nroot.getLeftChild(), newPair));
+                    return nroot;
+                }
+                else
+                {
+                    
+                    nroot.setMiddleChild(insert2(nroot.getMiddleChild(), newPair));
+                    return nroot;
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * 
@@ -67,7 +98,6 @@ public class TTT {
         if (root.isFull()) {
             LeafNode bigLeaf = new LeafNode(root.addWhenFull(pair), null);
             KVPair promote = root.getSecondPair();
-            
         }
         else {
             root.insert(pair);
@@ -89,15 +119,17 @@ public class TTT {
         return false;
     }
     
-    private void promoteNode(LeafNode node, KVPair pair) {
-        if (node.isFull()) {
+    private KVPair promoteNode(LeafNode node, KVPair pair) {
+        //if (node.isFull()) {
             pair = node.addWhenFull(pair);
             LeafNode newLeaf = new LeafNode(pair, null);
-            InternalNode intNode = new InternalNode(node.getSecondPair(), null);
+            //InternalNode intNode = new InternalNode(node.getSecondPair(), null);
             node.setNext(newLeaf);
-            intNode.setLeftChild(node);
-            intNode.setMiddleChild(newLeaf);
-        }
+            newLeaf.setPrev(node);
+            //intNode.setLeftChild(node);
+            //intNode.setMiddleChild(newLeaf);
+            return node.getSecondPair();
+        //}
     }
     
     /**

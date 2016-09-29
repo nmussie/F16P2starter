@@ -28,6 +28,7 @@
 public class LeafNode extends Node {
 
     private LeafNode next;
+    private LeafNode prev;
 
     /**
      * Constructor that takes handles as parameters
@@ -40,6 +41,7 @@ public class LeafNode extends Node {
     public LeafNode(KVPair firstPair, KVPair secPair) {
         super(firstPair, secPair);
         setNext(null);
+        setPrev(null);
     }
 
     /**
@@ -47,6 +49,8 @@ public class LeafNode extends Node {
      */
     public LeafNode() {
         super();
+        setNext(null);
+        setPrev(null);
     }
 
     /**
@@ -76,6 +80,14 @@ public class LeafNode extends Node {
      */
     public void setNext(LeafNode next) {
         this.next = next;
+    }
+
+    public LeafNode getPrev() {
+        return prev;
+    }
+
+    public void setPrev(LeafNode prev) {
+        this.prev = prev;
     }
 
 }
