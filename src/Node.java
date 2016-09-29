@@ -52,14 +52,14 @@ public abstract class Node {
         setSecondPair(null);
     }
 
-    /**
+   /* *//**
      * Returns true if is leaf node
      * 
      * @return true if is leaf node
-     */
+     *//*
     public boolean isLeafNode() {
         return false;
-    }
+    }*/
 
     /**
      * Return first pair o KVPairs

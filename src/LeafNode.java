@@ -58,7 +58,6 @@ public class LeafNode extends Node {
      * 
      * @return true if node is leaf node
      */
-    @Override
     public boolean isLeafNode() {
         return true;
     }

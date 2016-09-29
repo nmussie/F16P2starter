@@ -71,7 +71,6 @@ public class InternalNode extends Node {
      * 
      * @return true if leaf node
      */
-    @Override
     public boolean isLeafNode() {
         return left == null && right == null && middle == null;
     }
