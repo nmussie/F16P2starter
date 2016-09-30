@@ -47,8 +47,8 @@ public class TTTTest extends TestCase {
      * tests the insert method
      */
     public void testInsert() {
-        //assert(tree.insert(pair));
-
+        tree.insert(pair);
+        assertNotNull(tree.getRoot());
     }
 
 }

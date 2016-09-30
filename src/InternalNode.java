@@ -134,6 +134,7 @@ public class InternalNode extends Node {
                     this.setRightChild(middle);
                     this.setMiddleChild(((InternalNode) check).getMiddleChild());
                     this.setLeftChild(((InternalNode) check).getLeftChild());
+                    //this.getLeftChild().setSecondPair(null);
                     check = null;
                     return this;
                 }
@@ -172,7 +173,7 @@ public class InternalNode extends Node {
                 if (!check.getClass().equals(LeafNode.class)) {
                     InternalNode intNode = new InternalNode(this.getSecondPair(), null);
                     intNode.setMiddleChild(this.right);
-                    intNode.setLeftChild(this.left);
+                    intNode.setLeftChild(this.middle);
                     this.setLeftChild(check);
                     this.setMiddleChild(intNode);
                     this.setSecondPair(null);
@@ -196,6 +197,7 @@ public class InternalNode extends Node {
                     ((InternalNode)check).setMiddleChild(this.middle);
                     this.setLeftChild(check);
                     this.setMiddleChild(intNode);
+                    this.setRightChild(null);
                     return this;
                 }
                 return this;
@@ -205,6 +207,7 @@ public class InternalNode extends Node {
                 if (check == null) return null;
                 if (!check.getClass().equals(LeafNode.class)) {
                     InternalNode intNode = new InternalNode(this.getSecondPair(), null);
+                    this.setSecondPair(null);
                     intNode.setLeftChild(this);
                     intNode.setMiddleChild(check);
                     this.setRightChild(null);
@@ -213,7 +216,6 @@ public class InternalNode extends Node {
                 return this;
             }
         }
-        //return this;
     }
     
     private String indentTimes(int indentTimes) {
