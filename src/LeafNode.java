@@ -92,7 +92,10 @@ public class LeafNode extends Node {
     {
         if (!this.isFull())
         {
-            // check if first pair is equal
+            if (pair.compareTo(getFirstPair()) == 0)
+            {
+                return null;
+            }
             this.insert(pair);
             return this;
         }

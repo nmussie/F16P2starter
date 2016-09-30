@@ -125,11 +125,15 @@ public class InternalNode extends Node {
 
     public Node add(KVPair pair) {
         Node check = new InternalNode();
+        KVPair testPair;
         if (!isFull()) {
+            if (pair.compareTo(getFirstPair()) == 0) {
+                return null;
+            }
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
                 if (check == null) return null;
-                if(check.isFull())
+                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
@@ -145,10 +149,11 @@ public class InternalNode extends Node {
                 return this;
             } 
             else{
+                testPair = this.middle.getFirstPair();
                 check = this.middle.add(pair);
                 if (check == null) return null;
 
-                if(check.isFull())
+                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
@@ -170,7 +175,7 @@ public class InternalNode extends Node {
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
                 if (check == null) return null;
-                if(check.isFull())
+                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
@@ -189,7 +194,7 @@ public class InternalNode extends Node {
             else if (pair.compareTo(getSecondPair()) < 0) {
                 check = this.middle.add(pair);
                 if (check == null) return null;
-                if(check.isFull())
+                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
@@ -213,7 +218,7 @@ public class InternalNode extends Node {
             else {
                 check = this.right.add(pair);
                 if (check == null) return null;
-                if(check.isFull())
+                if(check.isFull()|| (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
