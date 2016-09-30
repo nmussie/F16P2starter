@@ -88,5 +88,80 @@ public class LeafNode extends Node {
     public void setPrev(LeafNode prev) {
         this.prev = prev;
     }
+    public Node add(KVPair pair)
+    {
+        if (!this.isFull())
+        {
+            this.insert(pair);
+            return this;
+        }
+        else
+        {
+            InternalNode newNode = new InternalNode();
+            LeafNode sibiling = new LeafNode();
+            if (pair.compareTo(getFirstPair()) < 0)
+            {
+                sibiling.setFirstPair(pair);
+                sibiling.setPrev(this.prev);
+                sibiling.setNext(this);
+                this.getPrev().setNext(sibiling);
+                this.setPrev(sibiling);
+                newNode.setFirstPair(this.getFirstPair());
+                newNode.setLeftChild(sibiling);
+                newNode.setMiddleChild(this);
+                return newNode;
+            }
+            else if (pair.compareTo(getSecondPair()) < 0)
+            {
+                sibiling.setFirstPair(pair);
+                sibiling.setSecondPair(this.getSecondPair());
+                this.setSecondPair(null);
+                sibiling.setPrev(this);
+                sibiling.setNext(this.next);
+                this.next.setPrev(sibiling);
+                this.setNext(sibiling);
+                newNode.setFirstPair(sibiling.getFirstPair());
+                newNode.setLeftChild(this);
+                newNode.setMiddleChild(sibiling);
+                return newNode;
+            }
+            else {
+                sibiling.setSecondPair(pair);
+                sibiling.setFirstPair(this.getSecondPair());
+                this.setSecondPair(null);
+                sibiling.setPrev(this);
+                sibiling.setNext(this.getNext());
+                this.getNext().setPrev(sibiling);
+                this.setNext(sibiling);
+                newNode.setFirstPair(sibiling.getFirstPair());
+                newNode.setLeftChild(this);
+                newNode.setMiddleChild(sibiling);
+                return newNode;
+            }
+        }
+    }
 
+    public String toString(int depth, int count) {
+        int indent = (depth - count)*2;
+        String indentSpace = new String(new char[indent]).replace('\0', ' ');
+        String ans = indentSpace + this.getFirstPair().toString();
+        if (this.getSecondPair() != null) {
+            ans += " " + this.getSecondPair().toString();
+        }
+        ans += "/n";
+        return ans;
+    }
+    public int getDepth(Node node)
+    {
+        return 1;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

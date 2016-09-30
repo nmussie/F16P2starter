@@ -122,4 +122,96 @@ public class InternalNode extends Node {
     public void setMiddleChild(Node newMiddle) {
         middle = newMiddle;
     }
+
+    public Node add(KVPair pair) {
+        Node check = new InternalNode();
+        if (!isFull()) {
+            if (pair.compareTo(getFirstPair()) < 0) {
+                check = this.left.add(pair);
+                if (!check.getClass().equals(LeafNode.class)) {
+
+                    this.insert(check.getFirstPair());
+                    this.setRightChild(middle);
+                    this.setMiddleChild(((InternalNode) check).getMiddleChild());
+                    this.setLeftChild(((InternalNode) check).getLeftChild());
+                    check = null;
+                    return this;
+                }
+                return this;
+
+            } else if (pair.compareTo(getSecondPair()) < 0) {
+                check = this.middle.add(pair);
+                if (!check.getClass().equals(LeafNode.class)) {
+                    this.insert(check.getFirstPair());
+                    this.setMiddleChild(((InternalNode) check).getLeftChild());
+                    this.setRightChild(((InternalNode) check).getMiddleChild());
+                    check = null;
+                    return this;
+                }
+            } else {
+                check = this.right.add(pair);
+                if (!check.getClass().equals(LeafNode.class))
+                {
+                    this.insert(check.getFirstPair());
+                    this.setMiddleChild(((InternalNode) check).getLeftChild());
+                    this.setRightChild(((InternalNode) check).getMiddleChild());
+                    check = null;
+                    return this;                                      
+                }
+            }
+        } 
+        else {
+
+        }
+        return this;
+    }
+    public String toString(int depth, int count)
+    {
+        int indent = (depth - count)*2;
+        String indentSpace  = new String(new char[indent]).replace('\0', ' ');
+        String ans = indentSpace + this.getFirstPair().toString();
+        if (this.getSecondPair() != null)
+        {
+            ans += " " + this.getSecondPair().toString();
+        }
+        
+        ans += "/n" + this.getLeftChild().toString(depth, count - 1) + 
+                this.getMiddleChild().toString(depth, count - 1);
+        if (this.getRightChild() != null)
+        {
+            ans += this.getRightChild().toString(depth, count - 1) ; 
+        }
+        
+        return ans;
+    }
+    public int getDepth(Node node)
+    {
+        if (node == null) {
+            return 0;
+        }
+        if (!((InternalNode) node).getClass().equals(LeafNode.class))
+        {
+            return 1 + getDepth(((InternalNode) node).getLeftChild());
+        }
+        else {
+            return 1;
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 }

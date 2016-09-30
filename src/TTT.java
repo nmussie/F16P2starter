@@ -44,67 +44,19 @@ public class TTT {
      *            to be inserted
      * @return true if item is inserted
      */
-    public Node insert2(Node node, KVPair newPair) {
-        if (node == null) {
-            node = new LeafNode(newPair, null);
-            return node;
+    public Node insert(KVPair newPair) {
+        if (root == null){
+            root = new LeafNode(newPair, null);
+            return root;
         }
-        if (node.getClass() == LeafNode.class) {//.equals()?
-            if (!node.isFull())
-            {
-                node.insert(newPair);
-                return node;
-            }
-            else
-            {
-                newPair = promoteNode((LeafNode)node, newPair);
-                InternalNode n = new InternalNode();
-                n.setFirstPair(newPair);
-                n.setLeftChild(node);
-                n.setMiddleChild(((LeafNode) node).getNext());
-                node = n;
-                return node;
-            }
-        }
-        else
+        Node temp = root.add(newPair);
+        if (temp == null)
         {
-            InternalNode nroot = (InternalNode) node;
-            if (!node.isFull())
-            {
-                if (newPair.compareTo(nroot.getFirstPair()) <= 0)
-                {
-                    nroot.setLeftChild(insert2(nroot.getLeftChild(), newPair));
-                    return nroot;
-                }
-                else
-                {
-                    
-                    nroot.setMiddleChild(insert2(nroot.getMiddleChild(), newPair));
-                    return nroot;
-                }
-            }
+            return null;
         }
-        return null;
+        root = temp;
+        return root;
     }
-
-    /**
-     * 
-     * @param pair
-     * @return
-     */
-    public boolean insert(KVPair pair) {
-        root = getToLeaf(root, pair);
-        
-        if (root.isFull()) {
-            LeafNode bigLeaf = new LeafNode(root.addWhenFull(pair), null);
-            KVPair promote = root.getSecondPair();
-        }
-        else {
-            root.insert(pair);
-        }
-        return false;
-    }
-    
     /**
      * 
      * @param node
@@ -174,13 +126,18 @@ public class TTT {
         if (root == null) {
             return "Printing 2-3 tree:";
         } 
-        else if (root.isFull()) {
+        int depth = root.getDepth(root);
+        int count = depth;
+        return "Printing 2-3 tree:/n" + root.toString(depth, count);
+        
+        
+        /*else if (root.isFull()) {
             return "Printing 2-3 tree:\n" + root.getFirstPair().
                     toString() + " " + root.getSecondPair().toString();
         } 
         else {
             return "Printing 2-3 tree:\n" + root.getFirstPair().toString();
-        }
+        }*/
     }
 
     /**

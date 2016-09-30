@@ -66,7 +66,7 @@ public class CommandProcessor {
         if (artistH) {
             System.out.println("|" + strings[0] + "| " 
                         + "is added to the artist database.");
-            insertA = true;
+            //insertA = true;
         } 
         else {
             System.out.println("|" + strings[0] + "| " 
@@ -80,7 +80,7 @@ public class CommandProcessor {
         if (songH) {
             System.out.println("|" + strings[1] + "| " 
                         + "is added to the song database.");
-            insertS = true;
+            //insertS = true;
         } 
         else {
             System.out.println("|" + strings[1] + "| " 
@@ -88,7 +88,7 @@ public class CommandProcessor {
         }  
         
         //for KVPairs
-        if (insertA && tree.insert(pairArt)) {
+        if (tree.insert(pairArt) != null) {
             System.out.println("The KVPair (|" + strings[0] 
                     + "|,|" + strings[1] + "|)," +
                     "(" + artist.getHandle().getRef() + "," 
@@ -102,7 +102,7 @@ public class CommandProcessor {
                     song.getHandle().getRef() + ")" 
                     + " duplicates a record already in the tree.");
         }
-        if (insertS && tree.insert(pairSong)) {
+        if (tree.insert(pairSong) != null) {
             System.out.println("The KVPair (|" + strings[1] 
                     + "|,|" + strings[0] + "|)," +
                     "(" + song.getHandle().getRef() + "," + 

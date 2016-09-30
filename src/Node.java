@@ -177,4 +177,18 @@ public abstract class Node {
         }
     }
 
+    public Node add(KVPair pair) {
+        // TODO Auto-generated method stub
+        return this;
+    }
+    public String toString(int depth, int count)
+    {
+        return null;
+    }
+    public int getDepth(Node node)
+    {
+        return 0;
+    }
+    
+
 }
