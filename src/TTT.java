@@ -138,7 +138,7 @@ public class TTT {
         } 
         int depth = root.getDepth(root);
         int count = depth;
-        System.out.println("Current Depth: " + depth);
+        //System.out.println("Current Depth: " + depth);
         String result = "Printing 2-3 tree:\n" + root.toString(depth, count);
         return result.substring(0, result.length() - 1);
     }

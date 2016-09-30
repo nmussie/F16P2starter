@@ -129,6 +129,10 @@ public class InternalNode extends Node {
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
                 if (check == null) return null;
+                if(check.isFull())
+                {
+                    return this;
+                }
                 if (!check.getClass().equals(LeafNode.class)) {
                     this.insert(check.getFirstPair());
                     this.setRightChild(middle);
@@ -140,9 +144,14 @@ public class InternalNode extends Node {
                 }
                 return this;
             } 
-            else if (pair.compareTo(getFirstPair()) > 0) {
+            else{
                 check = this.middle.add(pair);
                 if (check == null) return null;
+
+                if(check.isFull())
+                {
+                    return this;
+                }
                 if (!check.getClass().equals(LeafNode.class)) {
                     this.insert(check.getFirstPair());
                     this.setMiddleChild(((InternalNode) check).getLeftChild());
@@ -152,24 +161,19 @@ public class InternalNode extends Node {
                 }
                 return this;
             } 
-            else {
-                check = this.right.add(pair);
-                if (check == null) return null;
-                if (!check.getClass().equals(LeafNode.class))
-                {
-                    this.insert(check.getFirstPair());
-                    this.setMiddleChild(((InternalNode) check).getLeftChild());
-                    this.setRightChild(((InternalNode) check).getMiddleChild());
-                    check = null;
-                    return this;                                      
-                }
-                return this;
-            }
         } 
         else {
+            if (pair.compareTo(getFirstPair()) == 0 || 
+                    pair.compareTo(getSecondPair()) == 0) {
+                return null;
+            }
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
                 if (check == null) return null;
+                if(check.isFull())
+                {
+                    return this;
+                }
                 if (!check.getClass().equals(LeafNode.class)) {
                     InternalNode intNode = new InternalNode(this.getSecondPair(), null);
                     intNode.setMiddleChild(this.right);
@@ -185,6 +189,10 @@ public class InternalNode extends Node {
             else if (pair.compareTo(getSecondPair()) < 0) {
                 check = this.middle.add(pair);
                 if (check == null) return null;
+                if(check.isFull())
+                {
+                    return this;
+                }
                 if (!check.getClass().equals(LeafNode.class)) {
                     InternalNode intNode = new InternalNode(this.getSecondPair(), null);
                     intNode.setMiddleChild(this.right);
@@ -205,6 +213,10 @@ public class InternalNode extends Node {
             else {
                 check = this.right.add(pair);
                 if (check == null) return null;
+                if(check.isFull())
+                {
+                    return this;
+                }
                 if (!check.getClass().equals(LeafNode.class)) {
                     InternalNode intNode = new InternalNode(this.getSecondPair(), null);
                     this.setSecondPair(null);

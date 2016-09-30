@@ -2,12 +2,8 @@ print blocks
 print song
 print artist
 print tree
-remove artist Blind Lemon Jefferson
-list artist Blind Lemon Jefferson
 insert Blind Lemon Jefferson<SEP>Long Lonesome Blues
 insert Blind Lemon Jefferson<SEP>Long Lonesome Blues
-delete Bukka White<SEP>Bukka White's first song
-delete Blind Lemon Jefferson<SEP>Bukka White's first song
 print song
 delete Blind Lemon Jefferson<SEP>Long Lonesome Blues
 print artist
@@ -15,11 +11,15 @@ insert Bukka White<SEP>Bukka White's first song
 print blocks
 print tree
 insert Charley Patton<SEP>Mississippi Boweavil Blues
-remove artist Charley Patton
+print tree
 insert Sleepy John Estes<SEP>Street Car Blues
 print tree
 insert Bukka White<SEP>Bukka White's second song
-print tree
 print blocks
+print tree
 insert Another Bukka White<SEP>Bukka White's first song
+print tree
+insert Bukka White<SEP>Bukka White's third song
+print tree
+insert Another Bukka White<SEP>Bukka White's second song
 print tree
