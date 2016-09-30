@@ -128,8 +128,8 @@ public class InternalNode extends Node {
         if (!isFull()) {
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
+                if (check == null) return null;
                 if (!check.getClass().equals(LeafNode.class)) {
-
                     this.insert(check.getFirstPair());
                     this.setRightChild(middle);
                     this.setMiddleChild(((InternalNode) check).getMiddleChild());
@@ -138,9 +138,10 @@ public class InternalNode extends Node {
                     return this;
                 }
                 return this;
-
-            } else if (pair.compareTo(getSecondPair()) < 0) {
+            } 
+            else if (pair.compareTo(getFirstPair()) > 0) {
                 check = this.middle.add(pair);
+                if (check == null) return null;
                 if (!check.getClass().equals(LeafNode.class)) {
                     this.insert(check.getFirstPair());
                     this.setMiddleChild(((InternalNode) check).getLeftChild());
@@ -148,8 +149,11 @@ public class InternalNode extends Node {
                     check = null;
                     return this;
                 }
-            } else {
+                return this;
+            } 
+            else {
                 check = this.right.add(pair);
+                if (check == null) return null;
                 if (!check.getClass().equals(LeafNode.class))
                 {
                     this.insert(check.getFirstPair());
@@ -158,24 +162,80 @@ public class InternalNode extends Node {
                     check = null;
                     return this;                                      
                 }
+                return this;
             }
         } 
         else {
-
+            if (pair.compareTo(getFirstPair()) < 0) {
+                check = this.left.add(pair);
+                if (check == null) return null;
+                if (!check.getClass().equals(LeafNode.class)) {
+                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
+                    intNode.setMiddleChild(this.right);
+                    intNode.setLeftChild(this.left);
+                    this.setLeftChild(check);
+                    this.setMiddleChild(intNode);
+                    this.setSecondPair(null);
+                    this.setRightChild(null);
+                    return this;
+                }
+                return this;
+            }
+            else if (pair.compareTo(getSecondPair()) < 0) {
+                check = this.middle.add(pair);
+                if (check == null) return null;
+                if (!check.getClass().equals(LeafNode.class)) {
+                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
+                    intNode.setMiddleChild(this.right);
+                    intNode.setLeftChild(((InternalNode)check).getMiddleChild());
+                    this.setSecondPair(null);
+                    check.insert(this.getFirstPair());
+                    this.setFirstPair(check.getSecondPair());
+                    check.setSecondPair(null);
+                    ((InternalNode)check).setLeftChild(this.left);
+                    ((InternalNode)check).setMiddleChild(this.middle);
+                    this.setLeftChild(check);
+                    this.setMiddleChild(intNode);
+                    return this;
+                }
+                return this;
+            }
+            else {
+                check = this.right.add(pair);
+                if (check == null) return null;
+                if (!check.getClass().equals(LeafNode.class)) {
+                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
+                    intNode.setLeftChild(this);
+                    intNode.setMiddleChild(check);
+                    this.setRightChild(null);
+                    return intNode;
+                }
+                return this;
+            }
         }
-        return this;
+        //return this;
     }
+    
+    private String indentTimes(int indentTimes) {
+        char[] indentSpace = new char[indentTimes];
+        for (int i = 0; i < indentTimes; i++) {
+            indentSpace[i] = ' ';
+        }
+        String indent = new String(indentSpace);
+        return indent;
+    }
+    
     public String toString(int depth, int count)
     {
         int indent = (depth - count)*2;
-        String indentSpace  = new String(new char[indent]).replace('\0', ' ');
+        String indentSpace  = indentTimes(indent);
         String ans = indentSpace + this.getFirstPair().toString();
         if (this.getSecondPair() != null)
         {
             ans += " " + this.getSecondPair().toString();
         }
         
-        ans += "/n" + this.getLeftChild().toString(depth, count - 1) + 
+        ans += "\n" + this.getLeftChild().toString(depth, count - 1) + 
                 this.getMiddleChild().toString(depth, count - 1);
         if (this.getRightChild() != null)
         {
@@ -189,7 +249,7 @@ public class InternalNode extends Node {
         if (node == null) {
             return 0;
         }
-        if (!((InternalNode) node).getClass().equals(LeafNode.class))
+        if (!node.getClass().equals(LeafNode.class))
         {
             return 1 + getDepth(((InternalNode) node).getLeftChild());
         }
@@ -198,20 +258,5 @@ public class InternalNode extends Node {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

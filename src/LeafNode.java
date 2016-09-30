@@ -99,7 +99,11 @@ public class LeafNode extends Node {
         {
             InternalNode newNode = new InternalNode();
             LeafNode sibiling = new LeafNode();
-            if (pair.compareTo(getFirstPair()) < 0)
+            if (pair.compareTo(getFirstPair()) == 0 || 
+                    pair.compareTo(getSecondPair()) == 0) {
+                return null;
+            }
+            else if (pair.compareTo(getFirstPair()) < 0)
             {
                 sibiling.setFirstPair(pair);
                 sibiling.setPrev(this.prev);
@@ -125,6 +129,7 @@ public class LeafNode extends Node {
                 newNode.setMiddleChild(sibiling);
                 return newNode;
             }
+            
             else {
                 sibiling.setSecondPair(pair);
                 sibiling.setFirstPair(this.getSecondPair());
@@ -143,12 +148,12 @@ public class LeafNode extends Node {
 
     public String toString(int depth, int count) {
         int indent = (depth - count)*2;
-        String indentSpace = new String(new char[indent]).replace('\0', ' ');
+        String indentSpace = indentTimes(indent);
         String ans = indentSpace + this.getFirstPair().toString();
         if (this.getSecondPair() != null) {
             ans += " " + this.getSecondPair().toString();
         }
-        ans += "/n";
+        ans += "\n";
         return ans;
     }
     public int getDepth(Node node)
@@ -156,8 +161,14 @@ public class LeafNode extends Node {
         return 1;
     }
     
-    
-    
+    private String indentTimes(int indentTimes) {
+        char[] indentSpace = new char[indentTimes];
+        for (int i = 0; i < indentTimes; i++) {
+            indentSpace[i] = ' ';
+        }
+        String indent = new String(indentSpace);
+        return indent;
+    }
     
     
     

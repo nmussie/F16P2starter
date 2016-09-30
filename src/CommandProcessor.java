@@ -60,8 +60,8 @@ public class CommandProcessor {
         String[] strings = in.split("<SEP>");
         boolean artistH = artist.insert(strings[0]);
         Handle artistHandle = artist.getHandle();
-        boolean insertA = false;
-        boolean insertS = false;
+        //boolean insertA = false;
+        //boolean insertS = false;
         // for artists
         if (artistH) {
             System.out.println("|" + strings[0] + "| " 

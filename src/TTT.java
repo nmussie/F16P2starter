@@ -29,12 +29,18 @@
 public class TTT {
 
     private Node root;
+    private LeafNode head;
+    private LeafNode tail;
 
     /**
      * Constructor for Tree class
      */
     public TTT() {
         root = null;
+        head = new LeafNode();
+        tail = new LeafNode();
+        head.setNext(tail);
+        tail.setPrev(head);
     }
 
     /**
@@ -47,6 +53,10 @@ public class TTT {
     public Node insert(KVPair newPair) {
         if (root == null){
             root = new LeafNode(newPair, null);
+            ((LeafNode)root).setNext(tail);
+            ((LeafNode)root).setPrev(head);
+            head.setNext((LeafNode)root);
+            tail.setPrev((LeafNode)root);
             return root;
         }
         Node temp = root.add(newPair);
@@ -128,16 +138,9 @@ public class TTT {
         } 
         int depth = root.getDepth(root);
         int count = depth;
-        return "Printing 2-3 tree:/n" + root.toString(depth, count);
-        
-        
-        /*else if (root.isFull()) {
-            return "Printing 2-3 tree:\n" + root.getFirstPair().
-                    toString() + " " + root.getSecondPair().toString();
-        } 
-        else {
-            return "Printing 2-3 tree:\n" + root.getFirstPair().toString();
-        }*/
+        System.out.println("Current Depth: " + depth);
+        String result = "Printing 2-3 tree:\n" + root.toString(depth, count);
+        return result.substring(0, result.length() - 1);
     }
 
     /**
