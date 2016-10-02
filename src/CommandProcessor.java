@@ -60,13 +60,10 @@ public class CommandProcessor {
         String[] strings = in.split("<SEP>");
         boolean artistH = artist.insert(strings[0]);
         Handle artistHandle = artist.getHandle();
-        //boolean insertA = false;
-        //boolean insertS = false;
         // for artists
         if (artistH) {
             System.out.println("|" + strings[0] + "| " 
                         + "is added to the artist database.");
-            //insertA = true;
         } 
         else {
             System.out.println("|" + strings[0] + "| " 
@@ -80,7 +77,6 @@ public class CommandProcessor {
         if (songH) {
             System.out.println("|" + strings[1] + "| " 
                         + "is added to the song database.");
-            //insertS = true;
         } 
         else {
             System.out.println("|" + strings[1] + "| " 
@@ -122,7 +118,7 @@ public class CommandProcessor {
      * Prints the list command
      * @param in string input for list
      */
-    public void list(String in) {
+    /*public void list(String in) {
         int index = in.indexOf(" ");
         String command2 = in.substring(0, index);
         //String value = in.substring(index + 1);
@@ -132,7 +128,7 @@ public class CommandProcessor {
         else {
             System.out.println("List TO-DO");
         }
-    }
+    }*/
     
     /**
      * This method deals with print statements to remove artists and songs

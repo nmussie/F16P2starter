@@ -69,9 +69,9 @@ public class Parser {
             else if (command.equals("remove")) {
                 commandPro.remove(input);
             } 
-            else if (command.equals("list")) {
+            /*else if (command.equals("list")) {
                 commandPro.list(input);
-            }
+            }*/
             else if (command.equals("delete")) {
                 commandPro.delete(input);
             }

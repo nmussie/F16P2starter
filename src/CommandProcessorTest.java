@@ -37,7 +37,7 @@ public class CommandProcessorTest extends TestCase {
     private String removeS;
     private String print;
     private String print2;
-
+    private String printTree;
     /**
      * sets up the test fields
      */
@@ -48,6 +48,7 @@ public class CommandProcessorTest extends TestCase {
         removeS = "song Long Lonesome Blues";
         print = "song";
         print2 = "artist";
+        printTree = "tree";
     }
 
     /**
@@ -98,6 +99,8 @@ public class CommandProcessorTest extends TestCase {
                     commandPro.toString(print));
         assertEquals("|Blind Lemon Jefferson| 0\n" + "total artists: 1", 
                     commandPro.toString(print2));
+        assertEquals("Printing 2-3 tree:\n0 23 23 0", 
+                commandPro.toString(printTree));
     }
 
 }
