@@ -118,7 +118,7 @@ public class CommandProcessor {
      * Prints the list command
      * @param in string input for list
      */
-    /*public void list(String in) {
+    public void list(String in) {
         int index = in.indexOf(" ");
         String command2 = in.substring(0, index);
         //String value = in.substring(index + 1);
@@ -128,7 +128,7 @@ public class CommandProcessor {
         else {
             System.out.println("List TO-DO");
         }
-    }*/
+    }
     
     /**
      * This method deals with print statements to remove artists and songs
