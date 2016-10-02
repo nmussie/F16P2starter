@@ -9,11 +9,17 @@ import student.TestCase;
 
 public class HandleTest extends TestCase {
 
+    private Handle handle;
+    private Handle errorHandle;
+    private Handle dupHandle;
+    
     /**
-     * Set up the tests that follow.
+     * Sets up every test case
      */
     public void setUp() {
-        // Nothing Here.
+        handle = new Handle(10);
+        errorHandle = new Handle(-1);
+        dupHandle = new Handle(10);
     }
     
     /**
@@ -29,5 +35,19 @@ public class HandleTest extends TestCase {
         assertEquals(myHandle.compareTo(moreHandle), 1);
         assertEquals(myHandle.getRef(), 1);
         assertEquals(myHandle.toString(), "1");
+    }
+    
+    /**
+     * Tests equals method
+     */
+    public void testEquals() {
+        assertEquals(10, handle.getRef());
+        assertFalse(handle.equals(errorHandle));
+        assertTrue(handle.equals(dupHandle));
+        handle = null;
+        assertFalse(dupHandle.equals(handle));
+        dupHandle.setRef(7);
+        assertEquals(7, dupHandle.getRef());
+        assertFalse(dupHandle.equals("handle"));
     }
 }

@@ -26,17 +26,20 @@
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 
-public class InternalNode extends Node {
+public class InternalNode implements Node {
 
     private Node left;
     private Node middle;
     private Node right;
+    private KVPair firstPair;
+    private KVPair secondPair;
 
     /**
      * Empty Constructor
      */
     public InternalNode() {
-        super();
+        setFirstPair(null);
+        setSecondPair(null);
         left = null;
         middle = null;
         right = null;
@@ -51,7 +54,8 @@ public class InternalNode extends Node {
      *            of handles
      */
     public InternalNode(KVPair firstPair, KVPair secPair) {
-        super(firstPair, secPair);
+        setFirstPair(firstPair);
+        setSecondPair(secPair);
         left = null;
         middle = null;
         right = null;
@@ -67,12 +71,12 @@ public class InternalNode extends Node {
     }
 
     /**
-     * Returns true if is leaf node
+     * Return first pair o KVPairs
      * 
-     * @return true if leaf node
+     * @return first pair of handles
      */
-    public boolean isLeafNode() {
-        return left == null && right == null && middle == null;
+    public KVPair getFirstPair() {
+        return firstPair;
     }
 
     /**
@@ -123,64 +127,81 @@ public class InternalNode extends Node {
         middle = newMiddle;
     }
 
+    /**
+     * Add method for internal nodes
+     * 
+     * @param pair
+     *            to be inserted
+     * @return current node where pair was inserted
+     */
     public Node add(KVPair pair) {
         Node check = new InternalNode();
-        KVPair testPair;
+        // KVPair testPair;
         if (!isFull()) {
             if (pair.compareTo(getFirstPair()) == 0) {
                 return null;
             }
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
-                if (check == null) return null;
-                if(check.isFull() || (this.left.getFirstPair().compareTo(check.getFirstPair()) == 0))
-                {
+                if (check == null) {
+                    return null;
+                }
+                if (check.isFull() || (this.left.getFirstPair().
+                        compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
                     this.insert(check.getFirstPair());
                     this.setRightChild(middle);
-                    this.setMiddleChild(((InternalNode) check).getMiddleChild());
-                    this.setLeftChild(((InternalNode) check).getLeftChild());
-                    //this.getLeftChild().setSecondPair(null);
+                    this.setMiddleChild(((InternalNode) check)
+                            .getMiddleChild());
+                    this.setLeftChild(((InternalNode) check).
+                            getLeftChild());
                     check = null;
                     return this;
                 }
                 return this;
             } 
-            else{
-                testPair = this.middle.getFirstPair();
+            else {
+                // testPair = this.middle.getFirstPair();
                 check = this.middle.add(pair);
-                if (check == null) return null;
+                if (check == null) {
+                    return null;
+                }
 
-                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
-                {
+                if (check.isFull() || (this.middle.getFirstPair().
+                        compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
                     this.insert(check.getFirstPair());
-                    this.setMiddleChild(((InternalNode) check).getLeftChild());
-                    this.setRightChild(((InternalNode) check).getMiddleChild());
+                    this.setMiddleChild(((InternalNode) check).
+                            getLeftChild());
+                    this.setRightChild(((InternalNode) check).
+                            getMiddleChild());
                     check = null;
                     return this;
                 }
                 return this;
-            } 
+            }
         } 
         else {
-            if (pair.compareTo(getFirstPair()) == 0 || 
-                    pair.compareTo(getSecondPair()) == 0) {
+            if (pair.compareTo(getFirstPair()) == 0 || pair.
+                    compareTo(getSecondPair()) == 0) {
                 return null;
             }
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
-                if (check == null) return null;
-                if(check.isFull() || (this.left.getFirstPair().compareTo(check.getFirstPair()) == 0))
-                {
+                if (check == null) {
+                    return null;
+                }
+                if (check.isFull() || (this.left.getFirstPair().
+                        compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
-                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
+                    InternalNode intNode = new 
+                            InternalNode(this.getSecondPair(), null);
                     intNode.setMiddleChild(this.right);
                     intNode.setLeftChild(this.middle);
                     this.setLeftChild(check);
@@ -190,40 +211,47 @@ public class InternalNode extends Node {
                     return this;
                 }
                 return this;
-            }
+            } 
             else if (pair.compareTo(getSecondPair()) < 0) {
                 check = this.middle.add(pair);
-                if (check == null) return null;
-                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
-                {
+                if (check == null) {
+                    return null;
+                }
+                if (check.isFull() || (this.middle.getFirstPair().
+                        compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
-                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
+                    InternalNode intNode = new 
+                            InternalNode(this.getSecondPair(), null);
                     intNode.setMiddleChild(this.right);
-                    intNode.setLeftChild(((InternalNode)check).getMiddleChild());
+                    intNode.setLeftChild(((InternalNode) check).
+                            getMiddleChild());
                     this.setSecondPair(null);
                     check.insert(this.getFirstPair());
                     this.setFirstPair(check.getSecondPair());
                     check.setSecondPair(null);
-                    ((InternalNode)check).setLeftChild(this.left);
-                    ((InternalNode)check).setMiddleChild(this.middle);
+                    ((InternalNode) check).setLeftChild(this.left);
+                    ((InternalNode) check).setMiddleChild(this.middle);
                     this.setLeftChild(check);
                     this.setMiddleChild(intNode);
                     this.setRightChild(null);
                     return this;
                 }
                 return this;
-            }
+            } 
             else {
                 check = this.right.add(pair);
-                if (check == null) return null;
-                if(check.isFull()|| (this.right.getFirstPair().compareTo(check.getFirstPair()) == 0))
-                {
+                if (check == null) {
+                    return null;
+                }
+                if (check.isFull() || (this.right.getFirstPair().
+                        compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
-                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
+                    InternalNode intNode = new 
+                            InternalNode(this.getSecondPair(), null);
                     this.setSecondPair(null);
                     intNode.setLeftChild(this);
                     intNode.setMiddleChild(check);
@@ -234,7 +262,14 @@ public class InternalNode extends Node {
             }
         }
     }
-    
+
+    /**
+     * Helper method for toString
+     * 
+     * @param indentTimes
+     *            how many times you need to indent
+     * @return a string array of spaces
+     */
     private String indentTimes(int indentTimes) {
         char[] indentSpace = new char[indentTimes];
         for (int i = 0; i < indentTimes; i++) {
@@ -243,39 +278,140 @@ public class InternalNode extends Node {
         String indent = new String(indentSpace);
         return indent;
     }
-    
-    public String toString(int depth, int count)
-    {
-        int indent = (depth - count)*2;
-        String indentSpace  = indentTimes(indent);
+
+    /**
+     * Strings together the internal nodes
+     * 
+     * @param depth
+     *            of 2-3 tree
+     * @param count
+     *            of the current depth
+     * @return string representation of internal node
+     */
+    public String toString(int depth, int count) {
+        int indent = (depth - count) * 2;
+        String indentSpace = indentTimes(indent);
         String ans = indentSpace + this.getFirstPair().toString();
-        if (this.getSecondPair() != null)
-        {
+        if (this.getSecondPair() != null) {
             ans += " " + this.getSecondPair().toString();
         }
-        
+
         ans += "\n" + this.getLeftChild().toString(depth, count - 1) + 
                 this.getMiddleChild().toString(depth, count - 1);
-        if (this.getRightChild() != null)
-        {
-            ans += this.getRightChild().toString(depth, count - 1) ; 
+        if (this.getRightChild() != null) {
+            ans += this.getRightChild().toString(depth, count - 1);
         }
-        
+
         return ans;
     }
-    public int getDepth(Node node)
-    {
+
+    /**
+     * Gets depth of node
+     * 
+     * @param node
+     *            to get the depth from
+     * @return the depth of tree
+     */
+    public int getDepth(Node node) {
         if (node == null) {
             return 0;
         }
-        if (!node.getClass().equals(LeafNode.class))
-        {
+        if (!node.getClass().equals(LeafNode.class)) {
             return 1 + getDepth(((InternalNode) node).getLeftChild());
-        }
+        } 
         else {
             return 1;
         }
-        
+
     }
 
+    /**
+     * Sets the first pair to newLeft
+     * 
+     * @param newLeft
+     *            pair that sets original
+     */
+    public void setFirstPair(KVPair newLeft) {
+        firstPair = newLeft;
+    }
+
+    /**
+     * Returns the second KVPair
+     * 
+     * @return second pair
+     */
+    public KVPair getSecondPair() {
+        return secondPair;
+    }
+
+    /**
+     * Sets the second KVPair in node
+     * 
+     * @param newRight
+     *            for the second pair
+     */
+    public void setSecondPair(KVPair newRight) {
+        secondPair = newRight;
+    }
+
+    /**
+     * Checks if node is full or not
+     * 
+     * @return true if node is full
+     */
+    public boolean isFull() {
+        return firstPair != null && secondPair != null;
+    }
+
+    /**
+     * True if only first pair is occupied
+     * 
+     * @return true if only first pair is used
+     */
+    public boolean onlyFirstNode() {
+        return firstPair != null && secondPair == null;
+    }
+
+    /**
+     * True if only second pair is used
+     * 
+     * @return true if only second pair is used
+     */
+    public boolean onlySecNode() {
+        return firstPair == null && secondPair != null;
+    }
+
+    /**
+     * Check first and second pairs to see where to insert to see where you can
+     * insert
+     * 
+     * @param pair
+     *            to be inserted
+     */
+    public void insert(KVPair pair) {
+        if (firstPair == null && secondPair == null) {
+            setFirstPair(pair);
+        } 
+        else if (onlyFirstNode()) {
+            setSecondPair(pair);
+        } 
+        else if (onlySecNode()) {
+            setFirstPair(pair);
+        }
+        if (isFull()) {
+            swap();
+        }
+    }
+
+    /**
+     * Shift method for full nodes
+     */
+    public void swap() {
+        KVPair temp = secondPair;
+        if (secondPair.compareTo(firstPair) < 0) {
+            temp = secondPair;
+            secondPair = firstPair;
+            firstPair = temp;
+        }
+    }
 }

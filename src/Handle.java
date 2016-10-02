@@ -54,6 +54,14 @@ public class Handle {
         return thePos;
     }
 
+    /**
+     * Sets reference in Handle
+     * @param newRef that you want to set
+     */
+    public void setRef(int newRef) {
+        thePos = newRef;
+    }
+    
     // ----------------------------------------------------------
     /**
      * Overload toString

@@ -1,4 +1,5 @@
 import student.TestCase;
+
 /**
  * Internal node test class
  * 
@@ -34,7 +35,7 @@ public class InternalNodeTest extends TestCase {
     private KVPair first;
     private KVPair second;
     private Node child;
-    
+
     /**
      * Sets up every test case
      */
@@ -65,4 +66,20 @@ public class InternalNodeTest extends TestCase {
         assertNull(emptyNode.getSecondPair());
     }
 
+    /**
+     * Tests methods in LeafNode
+     */
+    public void testOtherStuff() {
+        assertFalse(emptyNode.isFull());
+        assertFalse(emptyNode.onlyFirstNode());
+        emptyNode.insert(second);
+        assertTrue(emptyNode.onlyFirstNode());
+        emptyNode.insert(first);
+        assertTrue(emptyNode.isFull());
+        assertFalse(emptyNode.onlySecNode());
+        emptyNode.setFirstPair(null);
+        assertTrue(emptyNode.onlySecNode());
+        emptyNode.insert(first);
+        assertEquals(first, emptyNode.getFirstPair());
+    }
 }

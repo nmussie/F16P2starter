@@ -25,10 +25,12 @@
 // anything during the discussion or modifies any computer file
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
-public class LeafNode extends Node {
+public class LeafNode implements Node {
 
     private LeafNode next;
     private LeafNode prev;
+    private KVPair firstPair;
+    private KVPair secondPair;
 
     /**
      * Constructor that takes handles as parameters
@@ -39,7 +41,8 @@ public class LeafNode extends Node {
      *            of handles
      */
     public LeafNode(KVPair firstPair, KVPair secPair) {
-        super(firstPair, secPair);
+        setFirstPair(firstPair);
+        setSecondPair(secPair);
         setNext(null);
         setPrev(null);
     }
@@ -48,18 +51,10 @@ public class LeafNode extends Node {
      * Empty constructors
      */
     public LeafNode() {
-        super();
+        setFirstPair(null);
+        setSecondPair(null);
         setNext(null);
         setPrev(null);
-    }
-
-    /**
-     * Checks if node is leaf
-     * 
-     * @return true if node is leaf node
-     */
-    public boolean isLeafNode() {
-        return true;
     }
 
     /**
@@ -81,34 +76,48 @@ public class LeafNode extends Node {
         this.next = next;
     }
 
+    /**
+     * Gets previous leaf node
+     * 
+     * @return previous leaf node
+     */
     public LeafNode getPrev() {
         return prev;
     }
 
+    /**
+     * Sets previous node to parameter
+     * 
+     * @param prev
+     *            node that changes prev
+     */
     public void setPrev(LeafNode prev) {
         this.prev = prev;
     }
-    public Node add(KVPair pair)
-    {
-        if (!this.isFull())
-        {
-            if (pair.compareTo(getFirstPair()) == 0)
-            {
+
+    /**
+     * Add method for leaf node
+     * 
+     * @param pair
+     *            to be added
+     * @return the current node that you inserted pair into
+     */
+    public Node add(KVPair pair) {
+        if (!this.isFull()) {
+            if (pair.compareTo(getFirstPair()) == 0) {
                 return null;
             }
             this.insert(pair);
             return this;
-        }
-        else
-        {
+        } 
+        else {
             InternalNode newNode = new InternalNode();
             LeafNode sibiling = new LeafNode();
             if (pair.compareTo(getFirstPair()) == 0 || 
                     pair.compareTo(getSecondPair()) == 0) {
                 return null;
-            }
-            else if (pair.compareTo(getFirstPair()) < 0)
-            {
+            } 
+            else if (pair.compareTo(getFirstPair()) < 0) {
                 sibiling.setFirstPair(pair);
                 sibiling.setPrev(this.prev);
                 sibiling.setNext(this);
@@ -117,10 +126,9 @@ public class LeafNode extends Node {
                 newNode.setFirstPair(this.getFirstPair());
                 newNode.setLeftChild(sibiling);
                 newNode.setMiddleChild(this);
-                return newNode;
-            }
-            else if (pair.compareTo(getSecondPair()) < 0)
-            {
+                return (Node) newNode;
+            } 
+            else if (pair.compareTo(getSecondPair()) < 0) {
                 sibiling.setFirstPair(pair);
                 sibiling.setSecondPair(this.getSecondPair());
                 this.setSecondPair(null);
@@ -131,9 +139,9 @@ public class LeafNode extends Node {
                 newNode.setFirstPair(sibiling.getFirstPair());
                 newNode.setLeftChild(this);
                 newNode.setMiddleChild(sibiling);
-                return newNode;
+                return (Node) newNode;
             }
-            
+
             else {
                 sibiling.setSecondPair(pair);
                 sibiling.setFirstPair(this.getSecondPair());
@@ -145,13 +153,22 @@ public class LeafNode extends Node {
                 newNode.setFirstPair(sibiling.getFirstPair());
                 newNode.setLeftChild(this);
                 newNode.setMiddleChild(sibiling);
-                return newNode;
+                return (Node) newNode;
             }
         }
     }
 
+    /**
+     * Strings together the leaf nodes
+     * 
+     * @param depth
+     *            of 2-3 tree
+     * @param count
+     *            of the current depth
+     * @return string representation of leaf node
+     */
     public String toString(int depth, int count) {
-        int indent = (depth - count)*2;
+        int indent = (depth - count) * 2;
         String indentSpace = indentTimes(indent);
         String ans = indentSpace + this.getFirstPair().toString();
         if (this.getSecondPair() != null) {
@@ -160,11 +177,25 @@ public class LeafNode extends Node {
         ans += "\n";
         return ans;
     }
-    public int getDepth(Node node)
-    {
+
+    /**
+     * Gets depth of node
+     * 
+     * @param node
+     *            to get the depth from
+     * @return the depth of tree
+     */
+    public int getDepth(Node node) {
         return 1;
     }
-    
+
+    /**
+     * Helper method for toString
+     * 
+     * @param indentTimes
+     *            how many times you need to indent
+     * @return a string array of spaces
+     */
     private String indentTimes(int indentTimes) {
         char[] indentSpace = new char[indentTimes];
         for (int i = 0; i < indentTimes; i++) {
@@ -173,10 +204,104 @@ public class LeafNode extends Node {
         String indent = new String(indentSpace);
         return indent;
     }
-    
-    
-    
-    
-    
-    
+
+    /**
+     * Return first pair o KVPairs
+     * 
+     * @return first pair of handles
+     */
+    public KVPair getFirstPair() {
+        return firstPair;
+    }
+
+    /**
+     * Sets the first pair to newLeft
+     * 
+     * @param newLeft
+     *            pair that sets original
+     */
+    public void setFirstPair(KVPair newLeft) {
+        firstPair = newLeft;
+    }
+
+    /**
+     * Returns the second KVPair
+     * 
+     * @return second pair
+     */
+    public KVPair getSecondPair() {
+        return secondPair;
+    }
+
+    /**
+     * Sets the second KVPair in node
+     * 
+     * @param newRight
+     *            for the second pair
+     */
+    public void setSecondPair(KVPair newRight) {
+        secondPair = newRight;
+    }
+
+    /**
+     * Checks if node is full or not
+     * 
+     * @return true if node is full
+     */
+    public boolean isFull() {
+        return firstPair != null && secondPair != null;
+    }
+
+    /**
+     * True if only first pair is occupied
+     * 
+     * @return true if only first pair is used
+     */
+    public boolean onlyFirstNode() {
+        return firstPair != null && secondPair == null;
+    }
+
+    /**
+     * True if only second pair is used
+     * 
+     * @return true if only second pair is used
+     */
+    public boolean onlySecNode() {
+        return firstPair == null && secondPair != null;
+    }
+
+    /**
+     * Check first and second pairs to see where to insert to see where you can
+     * insert
+     * 
+     * @param pair
+     *            to be inserted
+     */
+    public void insert(KVPair pair) {
+        if (firstPair == null && secondPair == null) {
+            setFirstPair(pair);
+        } 
+        else if (onlyFirstNode()) {
+            setSecondPair(pair);
+        } 
+        else if (onlySecNode()) {
+            setFirstPair(pair);
+        }
+        if (isFull()) {
+            swap();
+        }
+    }
+
+    /**
+     * Shift method for full nodes
+     */
+    public void swap() {
+        KVPair temp = secondPair;
+        if (secondPair.compareTo(firstPair) < 0) {
+            temp = secondPair;
+            secondPair = firstPair;
+            firstPair = temp;
+        }
+    }
+
 }

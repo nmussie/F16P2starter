@@ -1,5 +1,5 @@
 /**
- * Node abstract class
+ * Node interface for 2-3 tree
  * 
  * @author Nathan Mussie
  * @author Enrique Prieto
@@ -26,49 +26,14 @@
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 
-public abstract class Node {
-
-    private KVPair firstPair;
-    private KVPair secondPair;
-
-    /**
-     * Constructor that takes KVPair parameters
-     * 
-     * @param firstPair
-     *            of handles
-     * @param secPair
-     *            of handles
-     */
-    public Node(KVPair firstPair, KVPair secPair) {
-        setFirstPair(firstPair);
-        setSecondPair(secPair);
-    }
-
-    /**
-     * Empty constructor
-     */
-    public Node() {
-        setFirstPair(null);
-        setSecondPair(null);
-    }
-
-   /* *//**
-     * Returns true if is leaf node
-     * 
-     * @return true if is leaf node
-     *//*
-    public boolean isLeafNode() {
-        return false;
-    }*/
+public interface Node {
 
     /**
      * Return first pair o KVPairs
      * 
      * @return first pair of handles
      */
-    public KVPair getFirstPair() {
-        return firstPair;
-    }
+    public KVPair getFirstPair();
 
     /**
      * Sets the first pair to newLeft
@@ -76,18 +41,14 @@ public abstract class Node {
      * @param newLeft
      *            pair that sets original
      */
-    public void setFirstPair(KVPair newLeft) {
-        firstPair = newLeft;
-    }
+    public void setFirstPair(KVPair newLeft);
 
     /**
      * Returns the second KVPair
      * 
      * @return second pair
      */
-    public KVPair getSecondPair() {
-        return secondPair;
-    }
+    public KVPair getSecondPair();
 
     /**
      * Sets the second KVPair in node
@@ -95,36 +56,28 @@ public abstract class Node {
      * @param newRight
      *            for the second pair
      */
-    public void setSecondPair(KVPair newRight) {
-        secondPair = newRight;
-    }
+    public void setSecondPair(KVPair newRight);
 
     /**
      * Checks if node is full or not
      * 
      * @return true if node is full
      */
-    public boolean isFull() {
-        return firstPair != null && secondPair != null;
-    }
+    public boolean isFull();
 
     /**
      * True if only first pair is occupied
      * 
      * @return true if only first pair is used
      */
-    public boolean onlyFirstNode() {
-        return firstPair != null && secondPair == null;
-    }
+    public boolean onlyFirstNode();
 
     /**
      * True if only second pair is used
      * 
      * @return true if only second pair is used
      */
-    public boolean onlySecNode() {
-        return firstPair == null && secondPair != null;
-    }
+    public boolean onlySecNode();
 
     /**
      * Compares newPair to full node and returns the larger of the three.
@@ -133,19 +86,8 @@ public abstract class Node {
      *            thats added when node is full
      * @return KVPair that's largest of the three
      */
-    public KVPair addWhenFull(KVPair newPair) {
-        KVPair temp = newPair;
-        if (newPair.compareTo(firstPair) < 0) {
-            temp = getSecondPair();
-            secondPair = firstPair;
-            firstPair = newPair;
-        } 
-        else if (newPair.compareTo(secondPair) < 0) {
-            temp = getSecondPair();
-            secondPair = newPair;
-        }
-        return temp;
-    }
+    // public KVPair addWhenFull(KVPair newPair);
+
     /**
      * Check first and second pairs to see where to insert to see where you can
      * insert
@@ -153,42 +95,40 @@ public abstract class Node {
      * @param pair
      *            to be inserted
      */
-    public void insert(KVPair pair) {
-        if (onlyFirstNode()) {
-            setSecondPair(pair);
-        } 
-        else if (onlySecNode()) {
-            setFirstPair(pair);
-        }
-        if (isFull()) {
-            swap();
-        }
-    }
+    public void insert(KVPair pair);
 
     /**
      * Shift method for full nodes
      */
-    public void swap() {
-        KVPair temp = secondPair;
-        if (secondPair.compareTo(firstPair) < 0) {
-            temp = secondPair;
-            secondPair = firstPair;
-            firstPair = temp;
-        }
-    }
+    public void swap();
 
-    public Node add(KVPair pair) {
-        // TODO Auto-generated method stub
-        return this;
-    }
-    public String toString(int depth, int count)
-    {
-        return null;
-    }
-    public int getDepth(Node node)
-    {
-        return 0;
-    }
-    
+    /**
+     * Add method for nodes
+     * 
+     * @param pair
+     *            to be added
+     * @return the node that the pair was added to
+     */
+    public Node add(KVPair pair);
+
+    /**
+     * Strings together the 2-3 tree
+     * 
+     * @param depth
+     *            of 2-3 tree
+     * @param count
+     *            of the current depth
+     * @return string representation of tree
+     */
+    public String toString(int depth, int count);
+
+    /**
+     * Gets depth of node
+     * 
+     * @param node
+     *            to get the depth from
+     * @return the depth of tree
+     */
+    public int getDepth(Node node);
 
 }

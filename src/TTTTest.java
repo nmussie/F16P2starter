@@ -64,26 +64,26 @@ public class TTTTest extends TestCase {
     }
 
     /**
-     * tests the insert method
+     * Tests the insert method
      */
     public void testOneInsert() {
         assertEquals("Printing 2-3 tree:", tree.toString());
         assertNull(tree.getRoot());
         tree.insert(pair);
         assertEquals("Printing 2-3 tree:\n1 2", tree.toString());
-        assertTrue(tree.getRoot().getClass() == LeafNode.class);
+        assertEquals(LeafNode.class, tree.getRoot().getClass());
     }
 
     /**
-     * 
+     * Tests duplicate insert
      */
     public void testDuplicateInsert() {
         tree.insert(pair);
         assertNull(tree.insert(pair));
     }
-    
+
     /**
-     * 
+     * Tests multiple inserts
      */
     public void testMultipleInsert() {
         assertEquals("Printing 2-3 tree:", tree.toString());
@@ -114,33 +114,23 @@ public class TTTTest extends TestCase {
         tree.insert(morePairs);
         morePairs = new KVPair(bigGuy, bigVal);
         tree.insert(morePairs);
-        assertTrue(tree.getRoot().getClass() == InternalNode.class);
+        assertEquals(InternalNode.class, tree.getRoot().getClass());
         assertEquals(
-        "Printing 2-3 tree:" + 
-        "\n7 9" + 
-        "\n  6 25" + 
-        "\n    1 9 2 6" + 
-        "\n      1 2" +
-        "\n      1 9" + 
-        "\n      2 6 6 9" +
-        "\n    7 2" +
-        "\n      6 25" +
-        "\n      7 2" +
-        "\n  25 7 34 23" +
-        "\n    9 25 23 6" +
-        "\n      7 9" +
-        "\n      9 25" +
-        "\n      23 6 23 34" +
-        "\n    34 1" +
-        "\n      25 7" +
-        "\n      34 1" +
-        "\n    60 23" +
-        "\n      34 23" +
-        "\n      60 23 60 34", tree.toString());
+                "Printing 2-3 tree:" + "\n7 9" + 
+                "\n  6 25" + "\n    1 9 2 6" 
+                        + "\n      1 2" 
+                        + "\n      1 9"
+                        + "\n      2 6 6 9" + 
+                        "\n    7 2" + "\n      6 25" 
+                        + "\n      7 2" + 
+                        "\n  25 7 34 23"
+                        + "\n    9 25 23 6" + 
+                        "\n      7 9" + "\n      9 25" 
+                        + "\n      23 6 23 34" + 
+                        "\n    34 1"
+                        + "\n      25 7" + "\n      34 1" 
+                        + "\n    60 23" + "\n      34 23" 
+                        + "\n      60 23 60 34",
+                tree.toString());
     }
-    
-    
-    
-    
-    
 }

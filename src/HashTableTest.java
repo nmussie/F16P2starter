@@ -125,6 +125,16 @@ public class HashTableTest extends TestCase {
     }
 
     /**
+     * Tests contains method in hash table
+     */
+    public void testContains() {
+        hashTable.insert(respect);
+        assertFalse(hashTable.insert(respect));
+        Handle handle = hashTable.getHandle();
+        assertEquals(handle, hashTable.getHandle());
+    }
+    
+    /**
      * Tests the isMorespace method
      */
     public void testIsMoreSpace() {
