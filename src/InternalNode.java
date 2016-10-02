@@ -133,7 +133,7 @@ public class InternalNode extends Node {
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
                 if (check == null) return null;
-                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
+                if(check.isFull() || (this.left.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
@@ -175,7 +175,7 @@ public class InternalNode extends Node {
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.add(pair);
                 if (check == null) return null;
-                if(check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
+                if(check.isFull() || (this.left.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
@@ -218,7 +218,7 @@ public class InternalNode extends Node {
             else {
                 check = this.right.add(pair);
                 if (check == null) return null;
-                if(check.isFull()|| (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0))
+                if(check.isFull()|| (this.right.getFirstPair().compareTo(check.getFirstPair()) == 0))
                 {
                     return this;
                 }
