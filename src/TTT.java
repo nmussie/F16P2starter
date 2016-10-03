@@ -73,9 +73,9 @@ public class TTT {
         node.getSecondPair().equals(pair));
     }
 
-    private LeafNode getToLeaf(Node node, KVPair newPair) {
-        if (node == null) { // empty tree
-            return new LeafNode(newPair, null);
+    private LeafNode getToLeaf(Node node, Handle handle) {
+        if (root == null) { // empty tree
+            return null;
         }
         if (node.getClass() == LeafNode.class) { // at leaf node
             return (LeafNode) node;
@@ -83,7 +83,7 @@ public class TTT {
         else { // get to leaf node
 
             // if newPair is smaller than left
-            if (newPair.compareTo(node.getFirstPair()) < 0) {
+            if (handle.compareTo(node.getFirstPair()) < 0) {
                 Node leftChild = ((InternalNode) node).getLeftChild();
                 return getToLeaf(leftChild, newPair);
             }
@@ -125,4 +125,85 @@ public class TTT {
     public Node getRoot() {
         return root;
     }
+    
+    /**
+     * Counts all handles with the same key
+     * @param handle needed to be found
+     * @return how many times that handle is in the tree
+     */
+    private int countHandles(Handle handle) {
+        int count = 0;
+        if (root == null) {
+            return 0;
+        }
+        LeafNode curr = head.getNext();
+        while (curr != tail) {
+            if (curr.getFirstPair().key().equals(handle) || 
+                    (curr.getSecondPair() != null &&
+                    curr.getSecondPair().key().equals(handle))) {
+                count++;
+            }
+            curr = curr.getNext();
+        }
+        return count;
+    }
+    
+    /**
+     * Returns an array of handles you need for list
+     * @param handle to be compared to
+     * @return a handle array of desired handles
+     */
+    public Handle[] list(Handle handle)
+    {
+        Handle[] array = new Handle[countHandles(handle) + 1];
+        int index = 0;
+        if (root == null || array.length == 0) {
+            return null;
+        }
+        LeafNode curr = head.getNext();
+        while (curr != tail) {
+            if (curr.getFirstPair().key().equals(handle)) {
+                array[index] = curr.getFirstPair().value();
+                index++;
+            }
+            if (curr.getSecondPair() != null &&
+                    curr.getSecondPair().key().equals(handle)) {
+                array[index] = curr.getSecondPair().value();
+                index++;
+            }
+            curr = curr.getNext();
+        }
+        return array;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

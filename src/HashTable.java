@@ -184,7 +184,22 @@ public class HashTable {
     public String get(byte[] arr) {
         return new String(arr);
     }
-
+    /**
+     * return the handle of the value other wise returns null
+     * @param value 
+     *              a string whose handle is in the hash table 
+     * @return the handle that points to the string in the memory manager
+     *         if the string is not in the meManager returns null
+     */
+    public Handle getHandle(String value)
+    {
+        int key = getKey(value);
+        if (!contains(key, value))
+        {
+            return null;
+        }
+        return hTable[key];
+    }
     /**
      * Removes a string from the array
      * 
@@ -296,6 +311,26 @@ public class HashTable {
      */
     public boolean isMorespace() {
         return morespace;
+    }
+    
+    /**
+     * Turns an array of handles to their string equivalent
+     * @param array of handles 
+     * @return a string of a list of songs or artists
+     */
+    public String handlesToString(Handle[] array)
+    {
+        String output = "";
+        if (array == null) {
+            return null;
+        }
+        for (int i = 0; i < array.length; i++) {
+            output += "|" + get(mem.get(array[i])) + "|";
+            if (i < array.length - 1) {
+                output += "\n";
+            }
+        }
+        return output;
     }
 
     /**

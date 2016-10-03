@@ -121,12 +121,26 @@ public class CommandProcessor {
     public void list(String in) {
         int index = in.indexOf(" ");
         String command2 = in.substring(0, index);
-        //String value = in.substring(index + 1);
+        String value = in.substring(index + 1);
         if (command2.equals("artist")) {
-            System.out.println("List TO-DO");
+            Handle handleA = artist.getHandle(value);
+            Handle [] handleList = tree.list(handleA);
+            String artistList = song.handlesToString(handleList);
+            if (artistList == null)
+            {
+                System.out.println( "|" + value + "|" + 
+                        "does not exist in the artist database");
+            }
         }
         else {
-            System.out.println("List TO-DO");
+            Handle handleS = song.getHandle(value);
+            Handle [] handleList = tree.list(handleS);
+            String songList = artist.handlesToString(handleList);
+            if (songList == null)
+            {
+                System.out.println( "|" + value + "|" + 
+                        "does not exist in the song database");
+            }
         }
     }
     
