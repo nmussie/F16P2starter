@@ -138,9 +138,11 @@ public class TTT {
         }
         LeafNode curr = head.getNext();
         while (curr != tail) {
-            if (curr.getFirstPair().key().equals(handle) || 
-                    (curr.getSecondPair() != null &&
-                    curr.getSecondPair().key().equals(handle))) {
+            if (curr.getFirstPair().key().equals(handle)) {
+                count++;
+            }
+            if (curr.getSecondPair() != null &&
+                    curr.getSecondPair().key().equals(handle)) {
                 count++;
             }
             curr = curr.getNext();
@@ -155,7 +157,7 @@ public class TTT {
      */
     public Handle[] list(Handle handle)
     {
-        Handle[] array = new Handle[countHandles(handle) + 1];
+        Handle[] array = new Handle[countHandles(handle)];
         int index = 0;
         if (root == null || array.length == 0) {
             return null;

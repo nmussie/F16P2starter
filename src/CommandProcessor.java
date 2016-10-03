@@ -128,8 +128,11 @@ public class CommandProcessor {
             String artistList = song.handlesToString(handleList);
             if (artistList == null)
             {
-                System.out.println( "|" + value + "|" + 
-                        "does not exist in the artist database");
+                System.out.println( "|" + value + "| " + 
+                        "does not exist in the artist database.");
+            }
+            else {
+                System.out.println(artistList);
             }
         }
         else {
@@ -138,8 +141,11 @@ public class CommandProcessor {
             String songList = artist.handlesToString(handleList);
             if (songList == null)
             {
-                System.out.println( "|" + value + "|" + 
-                        "does not exist in the song database");
+                System.out.println( "|" + value + "| " + 
+                        "does not exist in the song database.");
+            }
+            else {
+                System.out.println(songList);
             }
         }
     }
