@@ -224,10 +224,16 @@ public class InternalNode implements Node {
                 if (!check.getClass().equals(LeafNode.class)) {
                     InternalNode intNode = new 
                             InternalNode(this.getSecondPair(), null);
+                    this.setSecondPair(null);
                     intNode.setMiddleChild(this.right);
+                    this.setRightChild(null);
                     intNode.setLeftChild(((InternalNode) check).
                             getMiddleChild());
-                    this.setSecondPair(null);
+                    ((InternalNode)check).setLeftChild(this);
+                    ((InternalNode)check).setMiddleChild(intNode);
+                                
+                    return check;
+                    
                     
                    /* check.insert(this.getFirstPair());
                     this.setFirstPair(check.getSecondPair());
