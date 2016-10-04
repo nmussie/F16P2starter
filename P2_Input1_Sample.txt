@@ -12,14 +12,22 @@ insert Bukka White<SEP>Bukka White's first song
 print blocks
 print tree
 insert Charley Patton<SEP>Mississippi Boweavil Blues
+print tree
 insert Sleepy John Estes<SEP>Street Car Blues
+print tree
 insert Bukka White<SEP>Bukka White's second song
+print tree
 print blocks
 insert Another Bukka White<SEP>Bukka White's first song
+print tree
 insert Bukka White<SEP>Bukka White's third song
+print tree
 insert Another Bukka White<SEP>Bukka White's second song
+print tree
 insert Bukka White<SEP>Bukka White's fourth song
+print tree
 insert Another Bukka White<SEP>Bukka White's third song
+print tree
 insert Johnny Winter<SEP>Bukka White's first song
 list artist Another Bukka White
 print tree

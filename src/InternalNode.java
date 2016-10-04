@@ -228,7 +228,8 @@ public class InternalNode implements Node {
                     intNode.setLeftChild(((InternalNode) check).
                             getMiddleChild());
                     this.setSecondPair(null);
-                    check.insert(this.getFirstPair());
+                    
+                   /* check.insert(this.getFirstPair());
                     this.setFirstPair(check.getSecondPair());
                     check.setSecondPair(null);
                     ((InternalNode) check).setLeftChild(this.left);
@@ -236,7 +237,7 @@ public class InternalNode implements Node {
                     this.setLeftChild(check);
                     this.setMiddleChild(intNode);
                     this.setRightChild(null);
-                    return this;
+                    return this;*/
                 }
                 return this;
             } 

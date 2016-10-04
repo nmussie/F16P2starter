@@ -59,7 +59,7 @@ public class CommandProcessor {
         // separate songs from artists
         String[] strings = in.split("<SEP>");
         boolean artistH = artist.insert(strings[0]);
-        Handle artistHandle = artist.getHandle();
+        Handle artistHandle = artist.getHandle(strings[0]);
         // for artists
         if (artistH) {
             System.out.println("|" + strings[0] + "| " 
@@ -70,7 +70,7 @@ public class CommandProcessor {
                     + "duplicates a record already in the artist database.");
         }
         boolean songH = song.insert(strings[1]);
-        Handle songHandle = song.getHandle();
+        Handle songHandle = song.getHandle(strings[1]);
         KVPair pairArt = new KVPair(artistHandle, songHandle);
         KVPair pairSong = new KVPair(songHandle, artistHandle);
         // for songs
@@ -87,29 +87,29 @@ public class CommandProcessor {
         if (tree.insert(pairArt) != null) {
             System.out.println("The KVPair (|" + strings[0] 
                     + "|,|" + strings[1] + "|)," +
-                    "(" + artist.getHandle().getRef() + "," 
-                    + song.getHandle().getRef() + ")" + 
+                    "(" + artistHandle.getRef() + "," 
+                    + songHandle.getRef() + ")" + 
                     " is added to the tree.");
         }
         else {
             System.out.println("The KVPair (|" + strings[0] 
                     + "|,|" + strings[1] + "|)," +
-                    "(" + artist.getHandle().getRef() + "," + 
-                    song.getHandle().getRef() + ")" 
+                    "(" + artistHandle.getRef() + "," + 
+                    songHandle.getRef() + ")" 
                     + " duplicates a record already in the tree.");
         }
         if (tree.insert(pairSong) != null) {
             System.out.println("The KVPair (|" + strings[1] 
                     + "|,|" + strings[0] + "|)," +
-                    "(" + song.getHandle().getRef() + "," + 
-                    artist.getHandle().getRef() + ")" + 
+                    "(" + songHandle.getRef() + "," + 
+                    artistHandle.getRef() + ")" + 
                     " is added to the tree.");
         }
         else {
             System.out.println("The KVPair (|" + strings[1] 
                     + "|,|" + strings[0] + "|)," +
-                    "(" + song.getHandle().getRef() + "," + 
-                    artist.getHandle().getRef() + ")" + 
+                    "(" + songHandle.getRef() + "," + 
+                    artistHandle.getRef() + ")" + 
                     " duplicates a record already in the tree.");
         }
     }

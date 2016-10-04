@@ -36,7 +36,6 @@ public class HashTable {
     private boolean morespace;
     // tells us if it's an artist or song
     private String name;
-    private Handle tempHandle;
     private MemManager mem;
 
     /**
@@ -69,7 +68,6 @@ public class HashTable {
         }
         this.mem = mem;
         morespace = false;
-        // tempHandle = new Handle(-2);
     }
 
     /**
@@ -83,13 +81,11 @@ public class HashTable {
         if (value == null) {
             return false;
         }
-        tempHandle = null;
         morespace = false;
         currentSize++;
         /* hTable = moreSpace(); */
         int key = getKey(value);
         if (contains(key, value)) {
-            tempHandle = new Handle(hTable[key].getRef());
             currentSize--;
             return false;
         }
@@ -98,13 +94,11 @@ public class HashTable {
         if (morespace) {
             key = getKey(value);
             if (contains(key, value)) {
-                tempHandle = new Handle(hTable[key].getRef());
                 currentSize--;
                 return false;
             }
         }
         hTable[key] = mem.insert(value.getBytes());
-        tempHandle = new Handle(hTable[key].getRef());
         return true;
     }
 
@@ -116,16 +110,6 @@ public class HashTable {
     public int getTableSize() {
         return tableSize;
     }
-
-    /**
-     * Getter for handle
-     * 
-     * @return current handle
-     */
-    public Handle getHandle() {
-        return tempHandle;
-    }
-
     /**
      * Gets the current size of the hash table
      * 
