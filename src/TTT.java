@@ -155,7 +155,7 @@ public class TTT {
      * @param handle to be compared to
      * @return a handle array of desired handles
      */
-    public Handle[] list(Handle handle)
+    public Handle[] list(Handle handle)//we have to re write this!!!
     {
         Handle[] array = new Handle[countHandles(handle)];
         int index = 0;
