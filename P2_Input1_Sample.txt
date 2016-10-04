@@ -6,63 +6,29 @@ remove artist Blind Lemon Jefferson
 list artist Blind Lemon Jefferson
 insert Blind Lemon Jefferson<SEP>Long Lonesome Blues
 insert Blind Lemon Jefferson<SEP>Long Lonesome Blues
+delete Bukka White<SEP>Bukka White's first song
+delete Blind Lemon Jefferson<SEP>Bukka White's first song
 print song
+delete Blind Lemon Jefferson<SEP>Long Lonesome Blues
 print artist
 insert Bukka White<SEP>Bukka White's first song
 print blocks
 print tree
+list artist Bukka White
+list artist Bukka White
 insert Charley Patton<SEP>Mississippi Boweavil Blues
-print tree
+remove artist Charley Patton
 insert Sleepy John Estes<SEP>Street Car Blues
-print tree
 insert Bukka White<SEP>Bukka White's second song
-print tree
 print blocks
 insert Another Bukka White<SEP>Bukka White's first song
-print tree
 insert Bukka White<SEP>Bukka White's third song
-print tree
 insert Another Bukka White<SEP>Bukka White's second song
-print tree
 insert Bukka White<SEP>Bukka White's fourth song
-print tree
 insert Another Bukka White<SEP>Bukka White's third song
-print tree
 insert Johnny Winter<SEP>Bukka White's first song
 list artist Another Bukka White
 print tree
-insert redone<SEP>blue
-insert red two<SEP>blue
-insert red three<SEP>blue
-insert red four<SEP>blue
-insert red five<SEP>blue
-insert red six<SEP>blue
-insert red seven<SEP>blue
-insert red eight<SEP>blue
-insert red nine<SEP>blue
-insert red ten<SEP>blue
-insert red<SEP>blue
-insert red eleven<SEP>blue
-insert red twelve<SEP>blue
-insert red 13<SEP>blue 13
-insert red 14<SEP>blue14
-insert red 15<SEP>blue15
-insert red 16<SEP>blue16
-insert red 17<SEP>blue17
-insert red 19<SEP>blue18
-insert red 20<SEP>blue19
-insert red 21<SEP>blue20
-insert red 22<SEP>blue21
-insert red 23<SEP>blue22
-insert red 24<SEP>blue23
-insert red 25<SEP>blue24
-insert red 26<SEP>blue25
-insert red 27<SEP>blue26
-insert red 28<SEP>blue27
-insert red 29<SEP>blue28
-insert red 30<SEP>blue29
-insert red 31<SEP>blue30
-insert red 32<SEP>blue31
-insert red 33<SEP>blue32
-insert red 34<SEP>blue33
-print tree
+delete Sleepy John Estes<SEP>Street Car Blues
+list song Bukka White's first song
+list artist Bukka White

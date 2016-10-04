@@ -157,6 +157,27 @@ public class LeafNode implements Node {
             }
         }
     }
+    public LeafNode getToLeaf(Handle handle)
+    {
+        if (!isFull())
+        {
+            if (handle.compareTo(getFirstPair().key()) == 0)
+            {
+                return this;
+            }
+        }
+        else {
+            if (handle.compareTo(getSecondPair().key()) == 0)
+            {
+                return this;
+            }
+        }
+        if (next.getFirstPair().key().compareTo(handle) != 0)
+        {
+            return null;
+        }
+        return next;
+    }
 
     /**
      * Strings together the leaf nodes

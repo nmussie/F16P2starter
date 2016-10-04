@@ -155,9 +155,37 @@ public class TTT {
      * @param handle to be compared to
      * @return a handle array of desired handles
      */
-    public Handle[] list(Handle handle)//we have to re write this!!!
+    public Handle[] list(Handle handle) //we have to rewrite this!!!
     {
-        Handle[] array = new Handle[countHandles(handle)];
+        if (root == null || handle == null)
+        {
+            return null;
+        }
+        LeafNode found = root.getToLeaf(handle);
+        if (found == null)
+        {
+            return null;
+        }
+        int count = 0;
+        Handle[] array = new Handle[10];
+        
+        while (found != tail && found.getFirstPair().key().compareTo(handle) == 0 )
+        {
+            array[count] = found.getFirstPair().value();
+            count++;
+            realoc(array, count, false);
+            
+            if (found.getSecondPair() != null &&
+                    found.getSecondPair().key().compareTo(handle) == 0) {
+                array[count] = found.getSecondPair().value();
+                count++;
+                realoc(array, count, false);
+            }
+            found = found.getNext();
+        }
+        array = realoc(array, count, true);
+        return array;
+       /* //Handle[] 
         int index = 0;
         if (root == null || array.length == 0) {
             return null;
@@ -175,7 +203,24 @@ public class TTT {
             }
             curr = curr.getNext();
         }
-        return array;
+        return array;*/
+    }
+    private Handle[] realoc(Handle[] array, int i, boolean sizeBack)
+    {
+        if (i == array.length - 1)
+        {
+            Handle[] newArray = new Handle[array.length * 2];
+            System.arraycopy(array, 0, newArray, 0, array.length);
+            return newArray;
+        }
+        else if (sizeBack){
+            Handle[] newArray = new Handle[i + 1];
+            System.arraycopy(array, 0, newArray, 0, newArray.length);
+            return newArray;
+        }
+        else {
+            return array;
+        }
     }
     
     

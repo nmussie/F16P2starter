@@ -231,19 +231,7 @@ public class InternalNode implements Node {
                             getMiddleChild());
                     ((InternalNode)check).setLeftChild(this);
                     ((InternalNode)check).setMiddleChild(intNode);
-                                
                     return check;
-                    
-                    
-                   /* check.insert(this.getFirstPair());
-                    this.setFirstPair(check.getSecondPair());
-                    check.setSecondPair(null);
-                    ((InternalNode) check).setLeftChild(this.left);
-                    ((InternalNode) check).setMiddleChild(this.middle);
-                    this.setLeftChild(check);
-                    this.setMiddleChild(intNode);
-                    this.setRightChild(null);
-                    return this;*/
                 }
                 return this;
             } 
@@ -419,6 +407,59 @@ public class InternalNode implements Node {
             temp = secondPair;
             secondPair = firstPair;
             firstPair = temp;
+        }
+    }
+    public LeafNode getToLeaf(Handle handle)
+    {
+        LeafNode check;
+        if(!isFull())
+        {
+            if (handle.compareTo(getFirstPair().key()) <= 0)
+            {
+                check = left.getToLeaf(handle);
+                if (check == null)
+                {
+                    return null;
+                }
+                return check;
+            }
+            else {
+                check = middle.getToLeaf(handle);
+                if (check == null)
+                {
+                    return null;
+                }
+                return check;
+            }
+        }
+        else
+        {
+            if (handle.compareTo(getFirstPair().key()) <= 0)
+            {
+                check = left.getToLeaf(handle);
+                if (check == null)
+                {
+                    return null;
+                }
+                return check;
+            }
+            else if (handle.compareTo(getSecondPair().key()) <= 0)
+            {
+                check = middle.getToLeaf(handle);
+                if (check == null)
+                {
+                    return null;
+                }
+                return check;
+            }
+            else {
+                check = right.getToLeaf(handle);
+                if (check == null)
+                {
+                    return null;
+                }
+                return check;
+            }
         }
     }
 }
