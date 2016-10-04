@@ -157,6 +157,15 @@ public class LeafNode implements Node {
             }
         }
     }
+    
+    /**
+     * Gets the first leafNode that contains handle as its key
+     * 
+     * @param handle
+     *            the key that we are looking for
+     * @return the first LEafNode that contains the handle otherwise returns
+     *         null
+     */
     public LeafNode getToLeaf(Handle handle)
     {
         if (!isFull())

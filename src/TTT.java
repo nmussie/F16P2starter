@@ -67,40 +67,6 @@ public class TTT {
         return root;
     }
 
-    /*public boolean contains(Node node, KVPair pair) {
-        node = getToLeaf(node, pair);
-        return node.getFirstPair().equals(pair) || 
-        node.getSecondPair().equals(pair));
-    }
-
-    private LeafNode getToLeaf(Node node, Handle handle) {
-        if (root == null) { // empty tree
-            return null;
-        }
-        if (node.getClass() == LeafNode.class) { // at leaf node
-            return (LeafNode) node;
-        } 
-        else { // get to leaf node
-
-            // if newPair is smaller than left
-            if (handle.compareTo(node.getFirstPair()) < 0) {
-                Node leftChild = ((InternalNode) node).getLeftChild();
-                return getToLeaf(leftChild, newPair);
-            }
-            // if newPair is in middle of left and right
-            else if ((newPair.compareTo(node.getFirstPair()) > 0) 
-            && newPair.compareTo(node.getSecondPair()) < 0) {
-                Node middleChild = ((InternalNode) node).getRightChild();
-                return getToLeaf(middleChild, newPair);
-            }
-            // if newPair bigger than right
-            else {
-                Node rightChild = ((InternalNode) node).getRightChild();
-                return getToLeaf(rightChild, newPair);
-            }
-        }
-    }*/
-
     /**
      * To string method for 2-3+ tree
      * 
@@ -125,58 +91,31 @@ public class TTT {
     public Node getRoot() {
         return root;
     }
-    
-    /**
-     * Counts all handles with the same key
-     * @param handle needed to be found
-     * @return how many times that handle is in the tree
-     */
-    private int countHandles(Handle handle) {
-        int count = 0;
-        if (root == null) {
-            return 0;
-        }
-        LeafNode curr = head.getNext();
-        while (curr != tail) {
-            if (curr.getFirstPair().key().equals(handle)) {
-                count++;
-            }
-            if (curr.getSecondPair() != null &&
-                    curr.getSecondPair().key().equals(handle)) {
-                count++;
-            }
-            curr = curr.getNext();
-        }
-        return count;
-    }
-    
+
     /**
      * Returns an array of handles you need for list
-     * @param handle to be compared to
+     * 
+     * @param handle
+     *            to be compared to
      * @return a handle array of desired handles
      */
-    public Handle[] list(Handle handle) //we have to rewrite this!!!
-    {
-        if (root == null || handle == null)
-        {
+    public Handle[] list(Handle handle) {
+        if (root == null || handle == null) {
             return null;
         }
         LeafNode found = root.getToLeaf(handle);
-        if (found == null)
-        {
+        if (found == null) {
             return null;
         }
         int count = 0;
         Handle[] array = new Handle[10];
-        
-        while (found != tail && found.getFirstPair().key().compareTo(handle) == 0 )
-        {
+        while (found != tail && found.getFirstPair().key().
+                compareTo(handle) == 0) {
             array[count] = found.getFirstPair().value();
             count++;
             realoc(array, count, false);
-            
-            if (found.getSecondPair() != null &&
-                    found.getSecondPair().key().compareTo(handle) == 0) {
+            if (found.getSecondPair() != null && found.getSecondPair().
+                    key().compareTo(handle) == 0) {
                 array[count] = found.getSecondPair().value();
                 count++;
                 realoc(array, count, false);
@@ -185,72 +124,32 @@ public class TTT {
         }
         array = realoc(array, count, true);
         return array;
-       /* //Handle[] 
-        int index = 0;
-        if (root == null || array.length == 0) {
-            return null;
-        }
-        LeafNode curr = head.getNext();
-        while (curr != tail) {
-            if (curr.getFirstPair().key().equals(handle)) {
-                array[index] = curr.getFirstPair().value();
-                index++;
-            }
-            if (curr.getSecondPair() != null &&
-                    curr.getSecondPair().key().equals(handle)) {
-                array[index] = curr.getSecondPair().value();
-                index++;
-            }
-            curr = curr.getNext();
-        }
-        return array;*/
     }
-    private Handle[] realoc(Handle[] array, int i, boolean sizeBack)
-    {
-        if (i == array.length - 1)
-        {
+
+    /**
+     * Reallocates a handle array
+     * 
+     * @param array
+     *            needed to be reallocated
+     * @param i
+     *            the size array should be
+     * @param sizeBack
+     *            checks to see if array needs to be
+     * @return an array thats reallocated if needed
+     */
+    private Handle[] realoc(Handle[] array, int i, boolean sizeBack) {
+        if (i == array.length - 1) {
             Handle[] newArray = new Handle[array.length * 2];
             System.arraycopy(array, 0, newArray, 0, array.length);
             return newArray;
-        }
-        else if (sizeBack){
-            Handle[] newArray = new Handle[i + 1];
+        } 
+        else if (sizeBack) {
+            Handle[] newArray = new Handle[i];
             System.arraycopy(array, 0, newArray, 0, newArray.length);
             return newArray;
-        }
+        } 
         else {
             return array;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

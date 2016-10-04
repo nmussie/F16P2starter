@@ -409,10 +409,19 @@ public class InternalNode implements Node {
             firstPair = temp;
         }
     }
+    
+    /**
+     * Gets the first leafNode that contains handle as its key
+     * 
+     * @param handle
+     *            the key that we are looking for
+     * @return the first LEafNode that contains the handle otherwise returns
+     *         null
+     */
     public LeafNode getToLeaf(Handle handle)
     {
         LeafNode check;
-        if(!isFull())
+        if (!isFull())
         {
             if (handle.compareTo(getFirstPair().key()) <= 0)
             {

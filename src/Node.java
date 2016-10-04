@@ -132,7 +132,7 @@ public interface Node {
     public int getDepth(Node node);
 
     /**
-     * get the first leafNode that contains handle as its key
+     * Gets the first leafNode that contains handle as its key
      * 
      * @param handle
      *            the key that we are looking for
