@@ -162,10 +162,10 @@ public class TTT {
         if (temp != null)
         {
             root = temp;
+            return true;
         }
         else {
             return false;
         }
-        return false;
     }
 }
