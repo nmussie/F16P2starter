@@ -109,12 +109,14 @@ public class LeafNode implements Node {
             }
             this.insert(pair);
             return this;
-        } else {
+        }
+        else {
             InternalNode newNode = new InternalNode();
             LeafNode sibiling = new LeafNode();
             if (pair.compareTo(getFirstPair()) == 0 || pair.compareTo(getSecondPair()) == 0) {
                 return null;
-            } else if (pair.compareTo(getFirstPair()) < 0) {
+            }
+            else if (pair.compareTo(getFirstPair()) < 0) {
                 sibiling.setFirstPair(pair);
                 sibiling.setPrev(this.prev);
                 sibiling.setNext(this);
@@ -124,7 +126,8 @@ public class LeafNode implements Node {
                 newNode.setLeftChild(sibiling);
                 newNode.setMiddleChild(this);
                 return (Node) newNode;
-            } else if (pair.compareTo(getSecondPair()) < 0) {
+            }
+            else if (pair.compareTo(getSecondPair()) < 0) {
                 sibiling.setFirstPair(pair);
                 sibiling.setSecondPair(this.getSecondPair());
                 this.setSecondPair(null);
@@ -137,7 +140,6 @@ public class LeafNode implements Node {
                 newNode.setMiddleChild(sibiling);
                 return (Node) newNode;
             }
-
             else {
                 sibiling.setSecondPair(pair);
                 sibiling.setFirstPair(this.getSecondPair());
@@ -167,7 +169,8 @@ public class LeafNode implements Node {
             if (handle.compareTo(getFirstPair().key()) == 0) {
                 return this;
             }
-        } else {
+        }
+        else {
             if (handle.compareTo(getSecondPair().key()) == 0) {
                 return this;
             }
@@ -300,9 +303,11 @@ public class LeafNode implements Node {
     public void insert(KVPair pair) {
         if (firstPair == null && secondPair == null) {
             setFirstPair(pair);
-        } else if (onlyFirstNode()) {
+        }
+        else if (onlyFirstNode()) {
             setSecondPair(pair);
-        } else if (onlySecNode()) {
+        }
+        else if (onlySecNode()) {
             setFirstPair(pair);
         }
         if (isFull()) {
@@ -322,8 +327,15 @@ public class LeafNode implements Node {
         }
     }
 
+    /**
+     * Delete method for LeafNode
+     * 
+     * @param
+     * @return
+     */
     @Override
     public Node delete(KVPair pair) {
+        // leaf node is full
         if (isFull()) {
             if (getFirstPair().compareTo(pair) == 0) {
                 this.setFirstPair(null);
@@ -331,12 +343,12 @@ public class LeafNode implements Node {
                 this.setSecondPair(null);
                 return this;
             }
-            else if (getSecondPair().compareTo(pair) == 0)
-            {
+            else if (getSecondPair().compareTo(pair) == 0) {
                 this.setSecondPair(null);
                 return this;
             }
         }
+        // leaf node not full
         else {
             if (getFirstPair().compareTo(pair) == 0) {
                 this.setFirstPair(null);

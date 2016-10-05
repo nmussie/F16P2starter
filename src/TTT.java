@@ -109,13 +109,11 @@ public class TTT {
         }
         int count = 0;
         Handle[] array = new Handle[10];
-        while (found != tail && found.getFirstPair().key().
-                compareTo(handle) == 0) {
+        while (found != tail && found.getFirstPair().key().compareTo(handle) == 0) {
             array[count] = found.getFirstPair().value();
             count++;
             realoc(array, count, false);
-            if (found.getSecondPair() != null && found.getSecondPair().
-                    key().compareTo(handle) == 0) {
+            if (found.getSecondPair() != null && found.getSecondPair().key().compareTo(handle) == 0) {
                 array[count] = found.getSecondPair().value();
                 count++;
                 realoc(array, count, false);
@@ -142,30 +140,58 @@ public class TTT {
             Handle[] newArray = new Handle[array.length * 2];
             System.arraycopy(array, 0, newArray, 0, array.length);
             return newArray;
-        } 
+        }
         else if (sizeBack) {
             Handle[] newArray = new Handle[i];
             System.arraycopy(array, 0, newArray, 0, newArray.length);
             return newArray;
-        } 
+        }
         else {
             return array;
         }
     }
-    public boolean delete(KVPair pair)
-    {
-        if (root == null)
-        {
+    
+    /**
+     * 
+     * @param handle
+     */
+    public void remove(Handle handle) {
+        //To-Do
+    }
+
+    /**
+     * Deletes one instance of 
+     * 
+     * @param pair
+     * @return
+     */
+    public boolean delete(KVPair pair) {
+        if (root == null) {
             return false;
         }
         Node temp = root.delete(pair);
-        if (temp != null)
-        {
+        if (temp != null) {
             root = temp;
             return true;
         }
-        else {
+        return false;
+    }
+
+    /**
+     * Contains method for tree
+     * 
+     * @param handle
+     *            tree is searching for
+     * @return true if tree contains handle
+     */
+    public boolean contains(Handle handle) {
+        if (root == null) {
             return false;
         }
+        Node temp = root.getToLeaf(handle);
+        if (temp == null) {
+            return false;
+        }
+        return true;
     }
 }

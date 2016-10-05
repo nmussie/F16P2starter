@@ -146,22 +146,19 @@ public class InternalNode implements Node {
                 if (check == null) {
                     return null;
                 }
-                if (check.isFull() || (this.left.getFirstPair().
-                        compareTo(check.getFirstPair()) == 0)) {
+                if (check.isFull() || (this.left.getFirstPair().compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
                     this.insert(check.getFirstPair());
                     this.setRightChild(middle);
-                    this.setMiddleChild(((InternalNode) check)
-                            .getMiddleChild());
-                    this.setLeftChild(((InternalNode) check).
-                            getLeftChild());
+                    this.setMiddleChild(((InternalNode) check).getMiddleChild());
+                    this.setLeftChild(((InternalNode) check).getLeftChild());
                     check = null;
                     return this;
                 }
                 return this;
-            } 
+            }
             else {
                 // testPair = this.middle.getFirstPair();
                 check = this.middle.add(pair);
@@ -169,25 +166,21 @@ public class InternalNode implements Node {
                     return null;
                 }
 
-                if (check.isFull() || (this.middle.getFirstPair().
-                        compareTo(check.getFirstPair()) == 0)) {
+                if (check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
                     this.insert(check.getFirstPair());
-                    this.setMiddleChild(((InternalNode) check).
-                            getLeftChild());
-                    this.setRightChild(((InternalNode) check).
-                            getMiddleChild());
+                    this.setMiddleChild(((InternalNode) check).getLeftChild());
+                    this.setRightChild(((InternalNode) check).getMiddleChild());
                     check = null;
                     return this;
                 }
                 return this;
             }
-        } 
+        }
         else {
-            if (pair.compareTo(getFirstPair()) == 0 || pair.
-                    compareTo(getSecondPair()) == 0) {
+            if (pair.compareTo(getFirstPair()) == 0 || pair.compareTo(getSecondPair()) == 0) {
                 return null;
             }
             if (pair.compareTo(getFirstPair()) < 0) {
@@ -195,13 +188,11 @@ public class InternalNode implements Node {
                 if (check == null) {
                     return null;
                 }
-                if (check.isFull() || (this.left.getFirstPair().
-                        compareTo(check.getFirstPair()) == 0)) {
+                if (check.isFull() || (this.left.getFirstPair().compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
-                    InternalNode intNode = new 
-                            InternalNode(this.getSecondPair(), null);
+                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
                     intNode.setMiddleChild(this.right);
                     intNode.setLeftChild(this.middle);
                     this.setLeftChild(check);
@@ -211,42 +202,37 @@ public class InternalNode implements Node {
                     return this;
                 }
                 return this;
-            } 
+            }
             else if (pair.compareTo(getSecondPair()) < 0) {
                 check = this.middle.add(pair);
                 if (check == null) {
                     return null;
                 }
-                if (check.isFull() || (this.middle.getFirstPair().
-                        compareTo(check.getFirstPair()) == 0)) {
+                if (check.isFull() || (this.middle.getFirstPair().compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
-                    InternalNode intNode = new 
-                            InternalNode(this.getSecondPair(), null);
+                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
                     this.setSecondPair(null);
                     intNode.setMiddleChild(this.right);
                     this.setRightChild(null);
-                    intNode.setLeftChild(((InternalNode) check).
-                            getMiddleChild());
-                    ((InternalNode)check).setLeftChild(this);
-                    ((InternalNode)check).setMiddleChild(intNode);
+                    intNode.setLeftChild(((InternalNode) check).getMiddleChild());
+                    ((InternalNode) check).setLeftChild(this);
+                    ((InternalNode) check).setMiddleChild(intNode);
                     return check;
                 }
                 return this;
-            } 
+            }
             else {
                 check = this.right.add(pair);
                 if (check == null) {
                     return null;
                 }
-                if (check.isFull() || (this.right.getFirstPair().
-                        compareTo(check.getFirstPair()) == 0)) {
+                if (check.isFull() || (this.right.getFirstPair().compareTo(check.getFirstPair()) == 0)) {
                     return this;
                 }
                 if (!check.getClass().equals(LeafNode.class)) {
-                    InternalNode intNode = new 
-                            InternalNode(this.getSecondPair(), null);
+                    InternalNode intNode = new InternalNode(this.getSecondPair(), null);
                     this.setSecondPair(null);
                     intNode.setLeftChild(this);
                     intNode.setMiddleChild(check);
@@ -291,8 +277,7 @@ public class InternalNode implements Node {
             ans += " " + this.getSecondPair().toString();
         }
 
-        ans += "\n" + this.getLeftChild().toString(depth, count - 1) + 
-                this.getMiddleChild().toString(depth, count - 1);
+        ans += "\n" + this.getLeftChild().toString(depth, count - 1) + this.getMiddleChild().toString(depth, count - 1);
         if (this.getRightChild() != null) {
             ans += this.getRightChild().toString(depth, count - 1);
         }
@@ -313,7 +298,7 @@ public class InternalNode implements Node {
         }
         if (!node.getClass().equals(LeafNode.class)) {
             return 1 + getDepth(((InternalNode) node).getLeftChild());
-        } 
+        }
         else {
             return 1;
         }
@@ -386,10 +371,10 @@ public class InternalNode implements Node {
     public void insert(KVPair pair) {
         if (firstPair == null && secondPair == null) {
             setFirstPair(pair);
-        } 
+        }
         else if (onlyFirstNode()) {
             setSecondPair(pair);
-        } 
+        }
         else if (onlySecNode()) {
             setFirstPair(pair);
         }
@@ -409,62 +394,51 @@ public class InternalNode implements Node {
             firstPair = temp;
         }
     }
-    
+
     /**
      * Gets the first leafNode that contains handle as its key
      * 
      * @param handle
      *            the key that we are looking for
-     * @return the first LEafNode that contains the handle otherwise returns
+     * @return the first LaafNode that contains the handle otherwise returns
      *         null
      */
-    public LeafNode getToLeaf(Handle handle)
-    {
+    public LeafNode getToLeaf(Handle handle) {
         LeafNode check;
-        if (!isFull())
-        {
-            if (handle.compareTo(getFirstPair().key()) <= 0)
-            {
+        if (!isFull()) {
+            if (handle.compareTo(getFirstPair().key()) <= 0) {
                 check = left.getToLeaf(handle);
-                if (check == null)
-                {
+                if (check == null) {
                     return null;
                 }
                 return check;
             }
             else {
                 check = middle.getToLeaf(handle);
-                if (check == null)
-                {
+                if (check == null) {
                     return null;
                 }
                 return check;
             }
         }
-        else
-        {
-            if (handle.compareTo(getFirstPair().key()) <= 0)
-            {
+        else {
+            if (handle.compareTo(getFirstPair().key()) <= 0) {
                 check = left.getToLeaf(handle);
-                if (check == null)
-                {
+                if (check == null) {
                     return null;
                 }
                 return check;
             }
-            else if (handle.compareTo(getSecondPair().key()) <= 0)
-            {
+            else if (handle.compareTo(getSecondPair().key()) <= 0) {
                 check = middle.getToLeaf(handle);
-                if (check == null)
-                {
+                if (check == null) {
                     return null;
                 }
                 return check;
             }
             else {
                 check = right.getToLeaf(handle);
-                if (check == null)
-                {
+                if (check == null) {
                     return null;
                 }
                 return check;
@@ -472,21 +446,128 @@ public class InternalNode implements Node {
         }
     }
 
+    /**
+     * Delete method for internal node
+     * 
+     * @param
+     * @return
+     */
     @Override
     public Node delete(KVPair pair) {
         Node check;
-        if (!isFull())
-        {
-            if (pair.compareTo(getFirstPair()) < 0)
-            {
+        // if internal node isn't full
+        if (!isFull()) {
+            if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.delete(pair);
-                if (check == null)
-                {
+                // if pair wasn't in the tree
+                if (check == null) {
                     return null;
                 }
-                else if (check.isEmpty())
-                {
-                    return middle;
+                // if check is a leaf node
+                if (check.getClass().equals(LeafNode.class)) {
+                    // if leaf node is empty
+                    if (check.isEmpty()) {
+                        this.setLeftChild(null);
+                        this.setLeftChild(middle);
+                        return this;
+                    }
+                    return this;
+                }
+                else {
+                    // if internal node and is not full
+                    // InternalNode intNode = new InternalNode(this.getFirstPair(), this.middle.getFirstPair());
+                    this.setSecondPair(this.middle.getFirstPair());
+                    this.setLeftChild(((InternalNode) check).getLeftChild());
+                    this.setMiddleChild(((InternalNode)middle).getLeftChild());
+                    this.setRightChild(((InternalNode)middle).getMiddleChild());
+                }
+                return this;
+            }
+            else if (pair.compareTo(getFirstPair()) >= 0) {
+                //
+            }
+        }
+        // if internal node is full
+        else {
+            // left case if this is full
+            if (pair.compareTo(getFirstPair()) < 0) {
+                check = this.left.delete(pair);
+                // if pair wasn't in the tree
+                if (check == null) {
+                    return null;
+                }
+                // if check is a leaf node
+                if (check.getClass().equals(LeafNode.class)) {
+                    //if leaf node is empty
+                    if (check.isEmpty()) {
+                        this.setFirstPair(secondPair);
+                        this.setSecondPair(null);
+                        this.setLeftChild(middle);
+                        this.setMiddleChild(right);
+                        this.setRightChild(null);
+                        return this;
+                    }
+                    return this;
+                }
+                else {
+                    // if internal node and full
+                }
+                return this;
+            }
+            // middle case if this is full
+            if (pair.compareTo(getSecondPair()) <= 0) {
+                check = this.middle.delete(pair);
+                if (check == null) {
+                    return null;
+                }
+                // if check is a leaf node
+                if (check.getClass().equals(LeafNode.class)) {
+                    // if the previous leaf node is full
+                    if (check.isEmpty() && ((LeafNode) check).getPrev().isFull()) {
+                        check.setFirstPair(((LeafNode) check).getPrev().getSecondPair());
+                        ((LeafNode) check).getPrev().setSecondPair(null);
+                        this.setFirstPair(check.getFirstPair());
+                        return this;
+                    }
+                    // if previous leaf node isn't full and check is empty
+                    else if (check.isEmpty()) {
+                        this.setFirstPair(secondPair);
+                        this.setSecondPair(null);
+                        this.setMiddleChild(right);
+                        this.setRightChild(null);
+                        return this;
+                    }
+                    return this;
+                }
+                else {
+                    // if check is internal node and full
+                }
+                return this;
+            }
+            else {
+                check = this.right.delete(pair);
+                if (check == null) {
+                    return null;
+                }
+                // if check is a leaf node
+                if (check.getClass().equals(LeafNode.class)) {
+                    // if the previous leaf node is full
+                    if (((LeafNode) check).getPrev().isFull()) {
+                        check.setFirstPair(((LeafNode) check).getPrev().getSecondPair());
+                        ((LeafNode) check).getPrev().setSecondPair(null);
+                        this.setSecondPair(check.getFirstPair());
+                        return this;
+                    }
+                    // if the previous leaf node is not full
+                    else if (check.isEmpty()) {
+                        this.setSecondPair(null);
+                        this.setRightChild(null);
+                        return this;
+                    }
+                    return this;
+                }
+                else {
+                    // if check is internal node and full
                 }
                 return this;
             }

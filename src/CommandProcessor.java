@@ -166,6 +166,7 @@ public class CommandProcessor {
             if (artist.remove(value)) {
                 System.out.println("|" + value + "| " 
                         + "is removed from the artist database.");
+                tree.remove(artist.getHandle(value));
             } 
             else {
                 System.out.println("|" + value + "| " 
@@ -176,6 +177,7 @@ public class CommandProcessor {
             if (song.remove(value)) {
                 System.out.println("|" + value + "| " 
                         + "is removed from the song database.");
+              tree.remove(song.getHandle(value));
             } 
             else {
                 System.out.println("|" + value + "| " 
@@ -189,7 +191,41 @@ public class CommandProcessor {
      * @param in String input for delete
      */
     public void delete(String in) {
-        //do nothing
+        String[] strings = in.split("<SEP>");
+        Handle artistHandle = artist.getHandle(strings[0]);
+        Handle songHandle = song.getHandle(strings[1]);
+        KVPair pairArt = new KVPair(artistHandle, songHandle);
+        KVPair pairSong = new KVPair(songHandle, artistHandle);
+        if (tree.delete(pairArt)) {
+            System.out.println("The KVPair (|" + strings[0] 
+                    + "|,|" + strings[1] + "|)," +
+                    "(" + artistHandle.getRef() + "," 
+                    + songHandle.getRef() + ")" + 
+                    " is deleted to the tree.");
+        }
+        
+        else {
+            System.out.println("|" + strings[0] + "| " 
+                    + "does not exist in the artist database.");
+        }
+        
+        if (tree.delete(pairSong)) {
+            System.out.println("The KVPair (|" + strings[1] 
+                    + "|,|" + strings[0] + "|)," +
+                    "(" + songHandle.getRef() + "," + 
+                    artistHandle.getRef() + ")" + 
+                    " is deleted to the tree.");
+        }
+        else {
+            System.out.println("|" + strings[1] + "| " 
+                    + "does not exist in the song database.");
+        }
+        /*if (!tree.contains(artistHandle)) {
+            artist.remove(strings[0]);
+        }
+        if (!tree.contains(songHandle)) {
+            song.remove(strings[1]);
+        }*/
     }
 
     /**

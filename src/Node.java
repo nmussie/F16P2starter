@@ -80,15 +80,6 @@ public interface Node {
     public boolean onlySecNode();
 
     /**
-     * Compares newPair to full node and returns the larger of the three.
-     * 
-     * @param newPair
-     *            thats added when node is full
-     * @return KVPair that's largest of the three
-     */
-    // public KVPair addWhenFull(KVPair newPair);
-
-    /**
      * Check first and second pairs to see where to insert to see where you can
      * insert
      * 
