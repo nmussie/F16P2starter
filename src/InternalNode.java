@@ -471,4 +471,31 @@ public class InternalNode implements Node {
             }
         }
     }
+
+    @Override
+    public Node delete(KVPair pair) {
+        Node check;
+        if (!isFull())
+        {
+            if (pair.compareTo(getFirstPair()) < 0)
+            {
+                check = this.left.delete(pair);
+                if (check == null)
+                {
+                    return null;
+                }
+                else if (check.isEmpty())
+                {
+                    return middle;
+                }
+                return this;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return firstPair == null && secondPair == null;
+    }
 }

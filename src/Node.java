@@ -141,4 +141,20 @@ public interface Node {
      */
     public LeafNode getToLeaf(Handle handle);
 
+    /**
+     * deletes the kvpair from the tree
+     * 
+     * @param pair
+     *            to be deleted
+     * @return a node of the new restructured tree or a null
+     */
+    public Node delete(KVPair pair);
+
+    /**
+     * checks if the node has no kvPairs
+     * 
+     * @return true is there are no kvPairs
+     */
+    public boolean isEmpty();
+
 }

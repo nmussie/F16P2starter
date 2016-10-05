@@ -152,4 +152,20 @@ public class TTT {
             return array;
         }
     }
+    public boolean delete(KVPair pair)
+    {
+        if (root == null)
+        {
+            return false;
+        }
+        Node temp = root.delete(pair);
+        if (temp != null)
+        {
+            root = temp;
+        }
+        else {
+            return false;
+        }
+        return false;
+    }
 }
