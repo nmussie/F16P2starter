@@ -1,4 +1,7 @@
 insert Blind Lemon Jefferson<SEP>Long Lonesome Blues
+insert Blind Lemon Jeffersons<SEP>Long Lonesome Bluesy
 print tree
 delete Blind Lemon Jefferson<SEP>Long Lonesome Blues
+print tree
+delete Blind Lemon Jeffersons<SEP>Long Lonesome Bluesy
 print tree

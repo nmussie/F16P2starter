@@ -172,8 +172,11 @@ public class TTT {
         Node temp = root.delete(pair);
         if (temp != null) {
             root = temp;
-            if (temp.isEmpty()) {
+            if (temp.isEmpty() && temp.getClass().equals(LeafNode.class)) {
                 root = null;
+            }
+            else if (temp.isEmpty()){
+                root = ((InternalNode) temp).getLeftChild();
             }
             return true;
         }

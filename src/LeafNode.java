@@ -352,6 +352,10 @@ public class LeafNode implements Node {
         else {
             if (getFirstPair().compareTo(pair) == 0) {
                 this.setFirstPair(null);
+                this.getPrev().setNext(next);
+                this.getNext().setPrev(prev);
+                this.setNext(null);
+                this.setPrev(null);
                 return this;
             }
         }
