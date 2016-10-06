@@ -515,7 +515,7 @@ public class InternalNode implements Node {
                 return this;
             }
             // middle case if this is full
-            if (pair.compareTo(getSecondPair()) <= 0) {
+            if (pair.compareTo(getSecondPair()) < 0 || pair.compareTo(getFirstPair()) == 0) {
                 check = this.middle.delete(pair);
                 if (check == null) {
                     return null;

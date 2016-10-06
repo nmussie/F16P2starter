@@ -172,6 +172,9 @@ public class TTT {
         Node temp = root.delete(pair);
         if (temp != null) {
             root = temp;
+            if (temp.isEmpty()) {
+                root = null;
+            }
             return true;
         }
         return false;

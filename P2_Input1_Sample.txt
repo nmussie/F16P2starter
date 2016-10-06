@@ -1,12 +1,4 @@
-print blocks
-print song
-print artist
-print tree
-remove artist Blind Lemon Jefferson
-list artist Blind Lemon Jefferson
 insert Blind Lemon Jefferson<SEP>Long Lonesome Blues
-insert Bukka White<SEP>Bukka White's first song
 print tree
-delete Bukka White<SEP>Bukka White's first song
 delete Blind Lemon Jefferson<SEP>Long Lonesome Blues
 print tree
