@@ -194,8 +194,8 @@ public class TTT {
         if (root == null) {
             return false;
         }
-        Node temp = root.getToLeaf(handle);
-        if (temp == null) {
+        Handle[] array = list(handle);
+        if (array == null || array.length == 0) {
             return false;
         }
         return true;

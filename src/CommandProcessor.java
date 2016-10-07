@@ -196,7 +196,8 @@ public class CommandProcessor {
         Handle songHandle = song.getHandle(strings[1]);
         KVPair pairArt = new KVPair(artistHandle, songHandle);
         KVPair pairSong = new KVPair(songHandle, artistHandle);
-        if (tree.delete(pairArt)) {
+        boolean isThere = artistHandle != null && songHandle != null;
+        if (isThere && tree.delete(pairArt)) {
             System.out.println("The KVPair (|" + strings[0] 
                     + "|,|" + strings[1] + "|)," +
                     "(" + artistHandle.getRef() + "," 
@@ -209,7 +210,7 @@ public class CommandProcessor {
                     + "does not exist in the artist database.");
         }
         
-        if (tree.delete(pairSong)) {
+        if (isThere && tree.delete(pairSong)) {
             System.out.println("The KVPair (|" + strings[1] 
                     + "|,|" + strings[0] + "|)," +
                     "(" + songHandle.getRef() + "," + 
@@ -220,12 +221,12 @@ public class CommandProcessor {
             System.out.println("|" + strings[1] + "| " 
                     + "does not exist in the song database.");
         }
-        /*if (!tree.contains(artistHandle)) {
+        if (!tree.contains(artistHandle)) {
             artist.remove(strings[0]);
         }
         if (!tree.contains(songHandle)) {
             song.remove(strings[1]);
-        }*/
+        }
     }
 
     /**

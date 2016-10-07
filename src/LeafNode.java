@@ -335,6 +335,7 @@ public class LeafNode implements Node {
      */
     @Override
     public Node delete(KVPair pair) {
+       
         // leaf node is full
         if (isFull()) {
             if (getFirstPair().compareTo(pair) == 0) {
