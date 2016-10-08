@@ -35,7 +35,6 @@ insert Jean Corti<SEP>C'Etait Bien
 insert L7<SEP>Baggage
 insert Bruce Rowland<SEP>Mountain Theme
 insert Thomas Dolby<SEP>She Blinded Me With Science
-remove song Mountain Theme
 insert Cheo Feliciano<SEP>Juguete
 insert Johnny Winter<SEP>Be Careful With A Fool
 insert Kings Of Leon<SEP>Wicker Chair
@@ -105,4 +104,112 @@ insert Michael Gettel<SEP>Safe Passage
 insert John Cale<SEP>Movement 4 [from Kiss] (Album Version)
 insert Jean Corti<SEP>C'Etait Bien
 insert L7<SEP>Baggage
+print tree
+delete Tilman Sillescu<SEP>Escape From The Underrealm
+delete Akon<SEP>Over The Edge
+delete Gerard Lenorman<SEP>Soldats Ne Tirez Pas
+delete All Time Low<SEP>Shameless
+delete Barenaked Ladies<SEP>This Is Where It Ends (Album Version)
+delete themselves<SEP>Oversleeping
+delete DJ Quik<SEP>Born and Raised In Compton
+delete Carl Smith<SEP>Hey Joe
+delete Jesus Jones<SEP>All The Answers
+delete Audio Adrenaline<SEP>My God (Audio Adrenaline Album Version)
+delete Chris Clark<SEP>If You Should Walk Away
+delete Loop Guru<SEP>The Mystery Epoch
+delete Chelsea<SEP>Decide
+delete Mr. Lif<SEP>For You
+delete 8Ball & MJG<SEP>Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)
+delete No Address<SEP>Pretty Girl (Amended Version)
+delete Green Day<SEP>Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)
+delete Dream Warriors<SEP>Sound Clash (featuring Beenie Man) - FattaSly Extended Mix
+delete Charlie Peacock<SEP>Down in the Lowlands
+delete Paula Santoro<SEP>The Girl From Ipanema (Garota De Ipanema)
+delete Sylver<SEP>Sympathy
+delete Funeral For A Friend<SEP>Your Revolution Is A Joke
+delete Dons<SEP>American Lovebite
+delete Hot Chip<SEP>No
+delete Liam O'Flynn<SEP>Romeo's Exile
+delete Open Hand<SEP>11th Street
+delete Tilman Sillescu<SEP>Escape From The Underrealm
+delete Novaspace<SEP>Dancing With Tears In My Eyes 2004 (Nova Mix (Club Version))
+delete The Ruby Suns<SEP>Function Of The Sun
+delete Buddy Miles<SEP>Don't Keep Me Wondering
+delete Esperanza Spalding / Leo Genovese<SEP>If That's True
+delete Dave Eggar<SEP>Deep Blue
+delete Michael Gettel<SEP>Safe Passage
+delete John Cale<SEP>Movement 4 [from Kiss] (Album Version)
+delete Jean Corti<SEP>C'Etait Bien
+delete L7<SEP>Baggage
+delete Bruce Rowland<SEP>Mountain Theme
+delete Thomas Dolby<SEP>She Blinded Me With Science
+delete Cheo Feliciano<SEP>Juguete
+delete Johnny Winter<SEP>Be Careful With A Fool
+delete Kings Of Leon<SEP>Wicker Chair
+delete Happy Mondays<SEP>Wrote For Luck (12 - Remastered version)
+delete Rita Chiarelli<SEP>Doggin' Around
+delete Tim Wilson<SEP>I Think My Wife Is Running Around On Me (Taco Hell)
+delete Ennio Morricone<SEP>Sporco Ma Distinto
+delete Tiny Bradshaw<SEP>Well Oh Well
+delete 3 Doors Down<SEP>Sarah Yellin'
+delete Akon<SEP>Over The Edge
+delete Gerard Lenorman<SEP>Soldats Ne Tirez Pas
+delete All Time Low<SEP>Shameless
+delete Barenaked Ladies<SEP>This Is Where It Ends (Album Version)
+delete themselves<SEP>Oversleeping
+delete DJ Quik<SEP>Born and Raised In Compton
+delete Carl Smith<SEP>Hey Joe
+delete Jesus Jones<SEP>All The Answers
+delete Audio Adrenaline<SEP>My God (Audio Adrenaline Album Version)
+delete Chris Clark<SEP>If You Should Walk Away
+delete Loop Guru<SEP>The Mystery Epoch
+delete Chelsea<SEP>Decide
+delete Silverstein<SEP>Always And Never (Album Version)
+delete David Arkenstone<SEP>The Forgotten Lands
+delete Dead Kennedys<SEP>Kill the Poor
+delete Placebo<SEP>The Never-Ending Why
+delete R.L. Burnside<SEP>Over The Hill
+delete Liquid Stranger<SEP>Drop Sacrifice
+delete Mr. Lif<SEP>For You
+delete Aeoliah<SEP>For Your Passion My Love
+delete Kyle Riabko<SEP>Doesn't Get Much Better
+delete Gary Moore<SEP>What Are We Here For
+delete Faithless<SEP>Six
+delete 8Ball & MJG<SEP>Pimpin' Don't Fail Me Now [Featuring Jazze Pha and Juvenile] (Explicit Album Version)
+delete No Address<SEP>Pretty Girl (Amended Version)
+delete Green Day<SEP>Wake Me Up When September Ends (Live at Foxboro_ MA 9/3/05)
+delete Dream Warriors<SEP>Sound Clash (featuring Beenie Man) - FattaSly Extended Mix
+delete Charlie Peacock<SEP>Down in the Lowlands
+delete Paula Santoro<SEP>The Girl From Ipanema (Garota De Ipanema)
+delete Sylver<SEP>Sympathy
+delete Funeral For A Friend<SEP>Your Revolution Is A Joke
+delete Y&T<SEP>Black Tiger
+delete Dons<SEP>American Lovebite
+delete Hot Chip<SEP>No
+delete Sister Hazel<SEP>Cerilene
+delete Delirious<SEP>God You Are My God
+delete Winston McAnuff_ The Bazbaz Orchestra<SEP>Common sense
+delete Teenage Fanclub<SEP>The World'll Be OK
+delete Samy Deluxe<SEP>Die Meisten
+delete James Horner<SEP>Good Friend
+delete Jennifer Lopez featuring Ja Rule<SEP>I'm Real
+delete The Presets<SEP>If I Know You
+delete Arturo Sandoval<SEP>Waheera
+delete Drowning Pool<SEP>Reborn (Explicit)
+delete Faith Hill & Tim McGraw<SEP>Let's Make Love (Album Version)
+delete Gene Autry<SEP>Frankie And Johnny
+delete Sergio Mendes / Black Eyed Peas<SEP>Mas Que Nada
+delete Kassav'<SEP>Loko
+delete Liam O'Flynn<SEP>Romeo's Exile
+delete Open Hand<SEP>11th Street
+delete Tilman Sillescu<SEP>Escape From The Underrealm
+delete Novaspace<SEP>Dancing With Tears In My Eyes 2004 (Nova Mix (Club Version))
+delete The Ruby Suns<SEP>Function Of The Sun
+delete Buddy Miles<SEP>Don't Keep Me Wondering
+delete Esperanza Spalding / Leo Genovese<SEP>If That's True
+delete Dave Eggar<SEP>Deep Blue
+delete Michael Gettel<SEP>Safe Passage
+delete John Cale<SEP>Movement 4 [from Kiss] (Album Version)
+delete Jean Corti<SEP>C'Etait Bien
+delete L7<SEP>Baggage
 print tree
