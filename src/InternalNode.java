@@ -456,7 +456,7 @@ public class InternalNode implements Node {
     public Node delete(KVPair pair) {
         Node check;
         // if internal node isn't full
-        if (!isFull()) {
+        if (onlyFirstNode()) {
             if (pair.compareTo(getFirstPair()) < 0) {
                 check = this.left.delete(pair);
                 // if pair wasn't in the tree
@@ -505,7 +505,7 @@ public class InternalNode implements Node {
                         }
                         else {
                             check.setFirstPair(this.getFirstPair());
-                            this.setFirstPair(middle.getFirstPair());
+                            //this.setFirstPair(middle.getFirstPair());
                             middle.setFirstPair(middle.getSecondPair());
                             middle.setSecondPair(null);
                             ((InternalNode) check).setMiddleChild(((
@@ -515,6 +515,7 @@ public class InternalNode implements Node {
                             ((InternalNode) middle).setMiddleChild(((
                                     InternalNode) middle).getRightChild());
                             ((InternalNode) middle).setRightChild(null);
+                            this.setFirstPair(middle.getLeast());//changed
                             return this;
                         }
                     }
@@ -523,7 +524,7 @@ public class InternalNode implements Node {
                     }
                 }
             }
-            else if (pair.compareTo(getFirstPair()) >= 0 ) {//&& pair.compareTo(getSecondPair()) < 0) {
+            else if (pair.compareTo(getFirstPair()) >= 0 ) {
                 check = this.middle.delete(pair);
                 // if pair wasn't in the tree
                 if (check == null) {
@@ -534,12 +535,13 @@ public class InternalNode implements Node {
                     if (check.isEmpty() && (this.getLeftChild().isFull())) {
                         check.setFirstPair(this.getLeftChild().getSecondPair());
                         this.getLeftChild().setSecondPair(null);
-                        this.setFirstPair(middle.getFirstPair());
+                        //this.setFirstPair(middle.getFirstPair());
                         ((LeafNode) left).getNext().setPrev((LeafNode) check);
                         ((LeafNode) check).setNext(((LeafNode) left).getNext());
 
                         ((LeafNode) left).setNext((LeafNode) check);
                         ((LeafNode) check).setPrev((LeafNode) left);
+                        this.setFirstPair(middle.getLeast());//changed
                         return this;
                     }
                     // if leaf node is empty
@@ -563,6 +565,7 @@ public class InternalNode implements Node {
                         }
                     }
                     else {
+                        this.setFirstPair(middle.getLeast());
                         return this;
                     }
                 }
@@ -610,7 +613,7 @@ public class InternalNode implements Node {
                         {
                             middle.setSecondPair(middle.getFirstPair());
                             middle.setFirstPair(this.getFirstPair());
-                            this.setFirstPair(this.getSecondPair());
+                            //this.setFirstPair(this.getSecondPair());
                             this.setSecondPair(null);
                             ((InternalNode) middle).setRightChild(((InternalNode) middle).getMiddleChild());
                             ((InternalNode) middle).setMiddleChild(((InternalNode) middle).getLeftChild());
@@ -618,18 +621,20 @@ public class InternalNode implements Node {
                             this.setLeftChild(middle);
                             this.setMiddleChild(right);
                             this.setRightChild(null);
+                            this.setFirstPair(middle.getLeast());//changed
                             return this;                            
                         }
                         else {
                             //middle child full
                             check.setFirstPair(this.getFirstPair());
                             ((InternalNode) check).setMiddleChild(((InternalNode) this.getMiddleChild()).getLeftChild());
-                            this.setFirstPair(middle.getFirstPair());
+                            //this.setFirstPair(middle.getFirstPair());
                             middle.setFirstPair(middle.getSecondPair());
                             middle.setSecondPair(null);
                             ((InternalNode) middle).setLeftChild(((InternalNode) middle).getMiddleChild());
                             ((InternalNode) middle).setMiddleChild(((InternalNode) middle).getRightChild());
                             ((InternalNode) middle).setRightChild(null);
+                            this.setFirstPair(middle.getLeast());//changed
                             return this;
                         }
                     }
@@ -650,6 +655,7 @@ public class InternalNode implements Node {
                         check.setFirstPair(this.getLeftChild().getSecondPair());
                         this.getLeftChild().setSecondPair(null);
                         this.setFirstPair(check.getFirstPair());
+                        //this.setFirstPair(getLeast(middle));//changed
                         ((LeafNode) left).getNext().setPrev((LeafNode) check);
                         ((LeafNode) check).setNext(((LeafNode) left).getNext());
                         ((LeafNode) left).setNext((LeafNode) check);
@@ -672,11 +678,12 @@ public class InternalNode implements Node {
                     if (check.isEmpty()) {
                         if (this.getLeftChild().isFull()) {
                             check.setFirstPair(this.getFirstPair());
-                            this.setFirstPair(this.getLeftChild().getSecondPair());
+                            //this.setFirstPair(this.getLeftChild().getSecondPair());
                             getLeftChild().setSecondPair(null);
                             ((InternalNode)check).setMiddleChild(((InternalNode) check).getLeftChild());
                             ((InternalNode)check).setLeftChild(((InternalNode)getLeftChild()).getRightChild());
                             ((InternalNode) getLeftChild()).setRightChild(null);
+                            this.setFirstPair(middle.getLeast());//changed
                             return this;
                         }
                         //left child isn't full
@@ -704,12 +711,13 @@ public class InternalNode implements Node {
                     if (check.isEmpty() && (this.middle.isFull())) {//to save space we could potentially do this in the leaf Node
                         check.setFirstPair(middle.getSecondPair());
                         middle.setSecondPair(null);
-                        this.setSecondPair(check.getFirstPair());
+                        //this.setSecondPair(check.getFirstPair());
                         ((LeafNode) middle).getNext().setPrev((LeafNode) check);
                         ((LeafNode) check).setNext(((LeafNode) middle).getNext());
 
                         ((LeafNode) middle).setNext((LeafNode) check);
                         ((LeafNode) check).setPrev((LeafNode) middle);
+                        this.setSecondPair(right.getLeast());//changed
                         return this;
                     }
                     // if the previous leaf node is not full
@@ -729,7 +737,8 @@ public class InternalNode implements Node {
                             ((InternalNode) check).setMiddleChild(((InternalNode) check).getLeftChild());
                             ((InternalNode) check).setLeftChild(((InternalNode) middle).getRightChild());
                             ((InternalNode) middle).setRightChild(null);
-                            this.setSecondPair(middle.getSecondPair());
+                            //this.setSecondPair(middle.getSecondPair());
+                            this.setSecondPair(right.getLeast());//changed
                             middle.setSecondPair(null);
                             return this;
                         }
@@ -748,9 +757,21 @@ public class InternalNode implements Node {
         }
         return this;
     }
-
+    /**
+     * checks if the node is empty
+     * @return true is the nodes pairs are both null
+     */
     @Override
     public boolean isEmpty() {
         return firstPair == null && secondPair == null;
+    }
+    public KVPair getLeast()
+    {
+        /*if (newNode == null)
+        {
+            return null;
+        }*/
+        KVPair least = left.getLeast();//getLeast(((Node)(((InternalNode) newNode).getLeftChild())));
+        return least;
     }
 }

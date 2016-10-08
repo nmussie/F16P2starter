@@ -136,14 +136,14 @@ public class TTT {
      * @return an array thats reallocated if needed
      */
     private Handle[] realoc(Handle[] array, int i, boolean sizeBack) {
-        if (i == array.length - 1) {
-            Handle[] newArray = new Handle[array.length * 2];
-            System.arraycopy(array, 0, newArray, 0, array.length);
-            return newArray;
-        }
-        else if (sizeBack) {
+        if (sizeBack) {
             Handle[] newArray = new Handle[i];
             System.arraycopy(array, 0, newArray, 0, newArray.length);
+            return newArray;
+        }
+        else if (i == array.length - 1) {
+            Handle[] newArray = new Handle[array.length * 2];
+            System.arraycopy(array, 0, newArray, 0, array.length);
             return newArray;
         }
         else {
@@ -156,7 +156,17 @@ public class TTT {
      * @param handle
      */
     public void remove(Handle handle) {
-        //To-Do
+        Handle[] values = list(handle);
+        if (values == null || values.length == 0) {
+            return;
+        }
+        for (int i = 0; i < values.length; i++)
+        {
+            KVPair artistPair = new KVPair(handle, values[i]);
+            KVPair songPair = new KVPair(values[i], handle);
+            delete(artistPair);
+            delete(songPair);
+        }        
     }
 
     /**

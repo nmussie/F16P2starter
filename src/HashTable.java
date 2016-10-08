@@ -83,21 +83,21 @@ public class HashTable {
         }
         morespace = false;
         currentSize++;
-        /* hTable = moreSpace(); */
+        hTable = moreSpace(); 
         int key = getKey(value);
         if (contains(key, value)) {
             currentSize--;
             return false;
         }
         // currentSize++;
-        hTable = moreSpace();
+        /*hTable = moreSpace();
         if (morespace) {
             key = getKey(value);
             if (contains(key, value)) {
                 currentSize--;
                 return false;
             }
-        }
+        }*/
         hTable[key] = mem.insert(value.getBytes());
         return true;
     }

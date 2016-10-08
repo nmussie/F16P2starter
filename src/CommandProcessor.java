@@ -151,6 +151,44 @@ public class CommandProcessor {
     }
     
     /**
+     * 
+     * @param value
+     * @param name
+     * @return
+     */
+    private String buildRemoveString(String value, String name) {
+        if (name == "artist" && tree.list(artist.getHandle(value)) != null) {
+            Handle[] artistHandles = tree.list(artist.getHandle(value));
+            String[] artistOut = new String[artistHandles.length];
+            String artistStr = "";
+            for (int i = 0; i < artistHandles.length; i++) {
+                artistOut[i] = song.get(mem.get(artistHandles[i])); 
+            }
+            for (int j = 0; j < artistOut.length; j++) {
+                artistStr += "The KVPair (|" + value 
+                        + "|,|" + artistOut[j] + "|)" +
+                        " is deleted to the tree.";
+            }
+            return artistStr;
+        }
+        if (name == "song" && tree.list(song.getHandle(value)) != null) {
+            Handle[] songHandles = tree.list(song.getHandle(value));
+            String[] songOut = new String[songHandles.length];
+            String songStr = "";
+            for (int i = 0; i < songHandles.length; i++) {
+                songOut[i] = artist.get(mem.get(songHandles[i])); 
+            }
+            for (int j = 0; j < songOut.length; j++) {
+                songStr += "The KVPair (|" + value 
+                        + "|,|" + songOut[j] + "|)" +
+                        " is deleted to the tree.";
+            }
+            return songStr;
+        }
+        return null;
+    }
+    
+    /**
      * This method deals with print statements to remove artists and songs
      * 
      * @param in
@@ -160,29 +198,33 @@ public class CommandProcessor {
         int index = in.indexOf(" ");
         String command2 = in.substring(0, index);
         String value = in.substring(index + 1);
-
         if (command2.equals("artist")) {
-
-            if (artist.remove(value)) {
-                System.out.println("|" + value + "| " 
-                        + "is removed from the artist database.");
-                tree.remove(artist.getHandle(value));
-            } 
-            else {
+            String artistOut = buildRemoveString(value, "artist");
+            Handle artistH = artist.getHandle(value);
+            if (artistOut == null) {
                 System.out.println("|" + value + "| " 
                         + "does not exist in the artist database.");
             }
+            else if (artist.remove(value)) {
+                System.out.println("|" + value + "| " 
+                        + "is removed from the artist database.");
+                tree.remove(artistH);
+                System.out.println(artistOut);
+            } 
         } 
         else {
-            if (song.remove(value)) {
-                System.out.println("|" + value + "| " 
-                        + "is removed from the song database.");
-              tree.remove(song.getHandle(value));
-            } 
-            else {
+            String songOut = buildRemoveString(value, "song");
+            Handle songH = song.getHandle(value);
+            if (songOut == null) {
                 System.out.println("|" + value + "| " 
                         + "does not exist in the song database.");
             }
+            else if (song.remove(value)) {
+                System.out.println("|" + value + "| " 
+                        + "is removed from the song database.");
+                tree.remove(songH);
+                System.out.println(songOut);
+            } 
         }
     }
     
@@ -199,10 +241,11 @@ public class CommandProcessor {
         boolean isThere = artistHandle != null && songHandle != null;
         if (isThere && tree.delete(pairArt)) {
             System.out.println("The KVPair (|" + strings[0] 
-                    + "|,|" + strings[1] + "|)," +
-                    "(" + artistHandle.getRef() + "," 
-                    + songHandle.getRef() + ")" + 
+                    + "|,|" + strings[1] + "|)" +
                     " is deleted to the tree.");
+            if (!tree.contains(artistHandle)) {
+                remove("artist "  + strings[0]);
+            }
         }
         
         else {
@@ -212,20 +255,15 @@ public class CommandProcessor {
         
         if (isThere && tree.delete(pairSong)) {
             System.out.println("The KVPair (|" + strings[1] 
-                    + "|,|" + strings[0] + "|)," +
-                    "(" + songHandle.getRef() + "," + 
-                    artistHandle.getRef() + ")" + 
+                    + "|,|" + strings[0] + "|)" +
                     " is deleted to the tree.");
+            if (!tree.contains(songHandle)) {
+                remove("song " + strings[1]);
+            }
         }
         else {
             System.out.println("|" + strings[1] + "| " 
                     + "does not exist in the song database.");
-        }
-        if (!tree.contains(artistHandle)) {
-            artist.remove(strings[0]);
-        }
-        if (!tree.contains(songHandle)) {
-            song.remove(strings[1]);
         }
     }
 

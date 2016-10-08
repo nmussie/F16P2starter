@@ -171,14 +171,26 @@ public class LeafNode implements Node {
             }
         }
         else {
-            if (handle.compareTo(getSecondPair().key()) == 0) {
+            if (handle.compareTo(getFirstPair().key()) == 0 || handle.compareTo(getSecondPair().key()) == 0) {
                 return this;
             }
         }
-        if (next.getFirstPair().key().compareTo(handle) != 0) {
-            return null;
+        return getToHelp(next, handle);
+    }
+    private LeafNode getToHelp(LeafNode node, Handle handle)
+    {
+        if (node == null || node.isEmpty() || handle == null) {
+            return null; 
         }
-        return next;
+        else {
+            if (node.getFirstPair().key().compareTo(handle) == 0 ||
+                    ( node.getSecondPair() != null &&
+                    node.getSecondPair().key().compareTo(handle) == 0)) {
+                return node;
+                
+            }
+        }
+        return node.getToHelp(node.getNext(), handle);
     }
 
     /**
@@ -273,6 +285,10 @@ public class LeafNode implements Node {
      */
     public boolean isFull() {
         return firstPair != null && secondPair != null;
+    }
+    public KVPair getLeast()
+    {
+        return getFirstPair();
     }
 
     /**

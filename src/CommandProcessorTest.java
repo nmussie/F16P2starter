@@ -61,7 +61,10 @@ public class CommandProcessorTest extends TestCase {
         commandPro.insert(insert);
         assertEquals(1, commandPro.getArtist().getSize());
         assertEquals(1, commandPro.getSong().getSize());
-
+        commandPro.list("artist Blind Lemon Jefferson");
+        commandPro.toString(printTree);
+        commandPro.delete(insert);
+        commandPro.toString(printTree);
     }
 
     /**

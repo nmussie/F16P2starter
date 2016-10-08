@@ -94,8 +94,10 @@ public class TTTTest extends TestCase {
         tree.insert(morePairs);
         morePairs = new KVPair(anotherKey, value);
         tree.insert(morePairs);
+        tree.list(anotherKey);
         morePairs = new KVPair(coolKey, anotherVal);
         tree.insert(morePairs);
+        tree.list(anotherVal);
         morePairs = new KVPair(value, coolKey);
         tree.insert(morePairs);
         morePairs = new KVPair(anotherVal, coolVal);
