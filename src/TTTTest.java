@@ -118,50 +118,29 @@ public class TTTTest extends TestCase {
         tree.insert(morePairs);
         assertEquals(InternalNode.class, tree.getRoot().getClass());
         assertEquals(
-                "Printing 2-3 tree:" + "\n7 9" + 
-                "\n  6 25" + "\n    1 9 2 6" 
-                        + "\n      1 2" 
-                        + "\n      1 9"
-                        + "\n      2 6 6 9" + 
-                        "\n    7 2" + "\n      6 25" 
-                        + "\n      7 2" + 
-                        "\n  25 7 34 23"
-                        + "\n    9 25 23 6" + 
-                        "\n      7 9" + "\n      9 25" 
-                        + "\n      23 6 23 34" + 
-                        "\n    34 1"
-                        + "\n      25 7" + "\n      34 1" 
-                        + "\n    60 23" + "\n      34 23" 
-                        + "\n      60 23 60 34",
+                "Printing 2-3 tree:" + "\n7 9" + "\n  6 25" + "\n    1 9 2 6"
+                        + "\n      1 2" + "\n      1 9" + "\n      2 6 6 9"
+                        + "\n    7 2" + "\n      6 25" + "\n      7 2"
+                        + "\n  25 7 34 23" + "\n    9 25 23 6" + "\n      7 9"
+                        + "\n      9 25" + "\n      23 6 23 34" + "\n    34 1"
+                        + "\n      25 7" + "\n      34 1" + "\n    60 23"
+                        + "\n      34 23" + "\n      60 23 60 34",
                 tree.toString());
-        System.out.println(tree.toString());
         tree.delete(morePairs);
-        System.out.println(tree.toString());
         morePairs = new KVPair(bigGuy, bigKey);
         tree.delete(morePairs);
-        System.out.println(tree.toString());
         tree.delete(pair);
-        System.out.println(tree.toString());
         morePairs = new KVPair(bigVal, bigKey);
         tree.delete(morePairs);
-        System.out.println(tree.toString());
         morePairs = new KVPair(bigKey, key);
         tree.delete(morePairs);
-        System.out.println(tree.toString());
         morePairs = new KVPair(coolKey, anotherVal);
         tree.delete(morePairs);
-        System.out.println(tree.toString());
         morePairs = new KVPair(key, anotherVal);
         tree.delete(morePairs);
-        System.out.println(tree.toString());
-        /*assertEquals(
-                "Printing 2-3 tree:" + "\n7 9" + 
-                "\n  6 25" + "\n  7 2" +
-                        "\n    2  6" + "\n    6 25 7 2" +
-                "\n  25 7" + "\n    9 25 23 6"
-                        + "\n    7 9" + "\n    9 25" +
-                "\n    23 6" + "\n    34 23" + "\n      25 7" 
-                        + "\n      34 23",
-                 tree.toString());*/
+        assertEquals("Printing 2-3 tree:" + "\n7 9 25 7" + "\n  6 25 7 2"
+                + "\n    2 6" + "\n    6 25" + "\n    7 2" + "\n  9 25 23 6"
+                + "\n    7 9" + "\n    9 25" + "\n    23 6" + "\n  34 23"
+                + "\n    25 7" + "\n    34 23", tree.toString());
     }
 }

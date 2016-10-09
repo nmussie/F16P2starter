@@ -113,7 +113,8 @@ public class LeafNode implements Node {
         else {
             InternalNode newNode = new InternalNode();
             LeafNode sibiling = new LeafNode();
-            if (pair.compareTo(getFirstPair()) == 0 || pair.compareTo(getSecondPair()) == 0) {
+            if (pair.compareTo(getFirstPair()) == 0
+                    || pair.compareTo(getSecondPair()) == 0) {
                 return null;
             }
             else if (pair.compareTo(getFirstPair()) < 0) {
@@ -171,23 +172,33 @@ public class LeafNode implements Node {
             }
         }
         else {
-            if (handle.compareTo(getFirstPair().key()) == 0 || handle.compareTo(getSecondPair().key()) == 0) {
+            if (handle.compareTo(getFirstPair().key()) == 0
+                    || handle.compareTo(getSecondPair().key()) == 0) {
                 return this;
             }
         }
         return getToHelp(next, handle);
     }
-    private LeafNode getToHelp(LeafNode node, Handle handle)
-    {
+
+    /**
+     * Gets the next instance of the node needed to be found
+     * 
+     * @param node
+     *            current node in tree
+     * @param handle
+     *            to be found
+     * @return true if node is found
+     */
+    private LeafNode getToHelp(LeafNode node, Handle handle) {
         if (node == null || node.isEmpty() || handle == null) {
-            return null; 
+            return null;
         }
         else {
-            if (node.getFirstPair().key().compareTo(handle) == 0 ||
-                    ( node.getSecondPair() != null &&
-                    node.getSecondPair().key().compareTo(handle) == 0)) {
+            if (node.getFirstPair().key().compareTo(handle) == 0
+                    || (node.getSecondPair() != null && node.getSecondPair()
+                            .key().compareTo(handle) == 0)) {
                 return node;
-                
+
             }
         }
         return node.getToHelp(node.getNext(), handle);
@@ -286,8 +297,13 @@ public class LeafNode implements Node {
     public boolean isFull() {
         return firstPair != null && secondPair != null;
     }
-    public KVPair getLeast()
-    {
+
+    /**
+     * Get least method for nodes
+     * 
+     * @return the KVPair of the least node needed for the updata
+     */
+    public KVPair getLeast() {
         return getFirstPair();
     }
 
@@ -346,12 +362,13 @@ public class LeafNode implements Node {
     /**
      * Delete method for LeafNode
      * 
-     * @param
-     * @return
+     * @param pair
+     *            to be deleted
+     * @return the leaf node that should be deleted
      */
     @Override
     public Node delete(KVPair pair) {
-       
+
         // leaf node is full
         if (isFull()) {
             if (getFirstPair().compareTo(pair) == 0) {
@@ -379,6 +396,11 @@ public class LeafNode implements Node {
         return null;
     }
 
+    /**
+     * Checks to see if both pairs in node is empty
+     * 
+     * @return true if node is empty
+     */
     @Override
     public boolean isEmpty() {
         return firstPair == null && secondPair == null;

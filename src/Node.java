@@ -149,7 +149,8 @@ public interface Node {
     public boolean isEmpty();
 
     /**
-     * method to get the least KVPair 
+     * method to get the least KVPair
+     * 
      * @return the least kvPair of the left subtree
      */
     public KVPair getLeast();

@@ -109,11 +109,13 @@ public class TTT {
         }
         int count = 0;
         Handle[] array = new Handle[10];
-        while (found != tail && found.getFirstPair().key().compareTo(handle) == 0) {
+        while (found != tail
+                && found.getFirstPair().key().compareTo(handle) == 0) {
             array[count] = found.getFirstPair().value();
             count++;
             realoc(array, count, false);
-            if (found.getSecondPair() != null && found.getSecondPair().key().compareTo(handle) == 0) {
+            if (found.getSecondPair() != null
+                    && found.getSecondPair().key().compareTo(handle) == 0) {
                 array[count] = found.getSecondPair().value();
                 count++;
                 realoc(array, count, false);
@@ -150,30 +152,34 @@ public class TTT {
             return array;
         }
     }
-    
+
     /**
+     * Removes every KVPair in the tree with handle as the key
      * 
      * @param handle
+     *            to be removed
+     * @param values
+     *            array of handles needed to removed
      */
-    public void remove(Handle handle) {
-        Handle[] values = list(handle);
+    public void remove(Handle handle, Handle[] values) {
+        // Handle[] values = list(handle);
         if (values == null || values.length == 0) {
             return;
         }
-        for (int i = 0; i < values.length; i++)
-        {
+        for (int i = 0; i < values.length; i++) {
             KVPair artistPair = new KVPair(handle, values[i]);
             KVPair songPair = new KVPair(values[i], handle);
             delete(artistPair);
             delete(songPair);
-        }        
+        }
     }
 
     /**
-     * Deletes one instance of 
+     * Deletes one instance of a KVPair
      * 
      * @param pair
-     * @return
+     *            to be deleted
+     * @return true if pair was deleted
      */
     public boolean delete(KVPair pair) {
         if (root == null) {
@@ -185,7 +191,7 @@ public class TTT {
             if (temp.isEmpty() && temp.getClass().equals(LeafNode.class)) {
                 root = null;
             }
-            else if (temp.isEmpty()){
+            else if (temp.isEmpty()) {
                 root = ((InternalNode) temp).getLeftChild();
             }
             return true;
@@ -205,9 +211,6 @@ public class TTT {
             return false;
         }
         Handle[] array = list(handle);
-        if (array == null || array.length == 0) {
-            return false;
-        }
-        return true;
+        return array != null && array.length != 0;
     }
 }

@@ -12,6 +12,7 @@ import student.TestCase;
  * @version Fall 2016
  */
 public class SearchTreeTest extends TestCase {
+
     /**
      * Sets up the tests that follow. In general, used for initialization
      */
@@ -49,8 +50,8 @@ public class SearchTreeTest extends TestCase {
     public void testMInit() throws IOException {
         SearchTree mem = new SearchTree();
         assertNotNull(mem);
-        //String outPut = readFile("P2_Output1_Sample.txt");
+        // String outPut = readFile("P2_Output1_Sample.txt");
         SearchTree.main(arg);
-        //assertEquals(outPut, systemOut().getHistory());
+        // assertEquals(outPut, systemOut().getHistory());
     }
 }
