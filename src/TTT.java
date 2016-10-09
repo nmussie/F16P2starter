@@ -152,7 +152,7 @@ public class TTT {
             return array;
         }
     }
-
+    
     /**
      * Removes every KVPair in the tree with handle as the key
      * 
@@ -173,7 +173,7 @@ public class TTT {
             delete(songPair);
         }
     }
-
+    
     /**
      * Deletes one instance of a KVPair
      * 
@@ -198,7 +198,7 @@ public class TTT {
         }
         return false;
     }
-
+    
     /**
      * Contains method for tree
      * 

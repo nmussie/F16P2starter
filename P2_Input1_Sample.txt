@@ -44,13 +44,10 @@ print song
 insert Another Johnny Winter<SEP>Johnny Winter's first song
 print tree
 insert Johnny Winter<SEP>Johnny Winter's second song
-print tree
 insert Johnny Winter<SEP>Johnny Winter's third song
-print tree
 insert Another Johnny Winter<SEP>Johnny Winter's second song
 print tree
 insert Johnny Winter<SEP>Johnny Winter's first song
-print tree
 insert Another Johnny Winter<SEP>Johnny Winter's third song
 insert Another Johnny Winter<SEP>Johnny Winter's fourth song
 print tree

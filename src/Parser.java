@@ -67,13 +67,13 @@ public class Parser {
                 commandPro.insert(input);
             } 
             else if (command.equals("remove")) {
-                commandPro.remove(input);
+                commandPro.remove3(input);
             } 
             else if (command.equals("list")) {
                 commandPro.list(input);
             }
             else if (command.equals("delete")) {
-                commandPro.delete(input);
+                commandPro.delete2(input, false, false);
             }
             else {
                 print(commandPro.toString(input));

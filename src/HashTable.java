@@ -83,21 +83,21 @@ public class HashTable {
         }
         morespace = false;
         currentSize++;
-        hTable = moreSpace(); 
+        // hTable = moreSpace();
         int key = getKey(value);
         if (contains(key, value)) {
             currentSize--;
             return false;
         }
         // currentSize++;
-        /*hTable = moreSpace();
+        hTable = moreSpace();
         if (morespace) {
             key = getKey(value);
             if (contains(key, value)) {
                 currentSize--;
                 return false;
             }
-        }*/
+        }
         hTable[key] = mem.insert(value.getBytes());
         return true;
     }
@@ -197,15 +197,17 @@ public class HashTable {
     public boolean remove(String value) {
         if (currentSize == 0 || value == null) {
             return false;
-        } 
+        }
         else {
             int key = getKey(value);
             if (hTable[key] != null && !hTable[key].equals(errorHandle)) {
+                System.out.println("|" + get(mem.get(hTable[key])) + "|"
+                        + " is deleted from the " + name + " database.");
                 mem.remove(hTable[key]);
                 hTable[key] = errorHandle;
                 currentSize--;
                 return true;
-            } 
+            }
             else {
                 return false;
             }
@@ -234,9 +236,9 @@ public class HashTable {
         while (array[key] != null) {
             if (array[key].equals(errorHandle) && okey < 0) {
                 okey = key;
-            } 
-            else if (!array[key].equals(errorHandle) && 
-                    value.equals(get(mem.get(array[key])))) {
+            }
+            else if (!array[key].equals(errorHandle)
+                    && value.equals(get(mem.get(array[key])))) {
                 return key;
             }
             key = (baseIndex + i * i++) % array.length;
