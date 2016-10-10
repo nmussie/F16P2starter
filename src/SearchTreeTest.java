@@ -52,6 +52,6 @@ public class SearchTreeTest extends TestCase {
         assertNotNull(mem);
         String outPut = readFile("P2_Output1_Sample.txt");
         SearchTree.main(arg);
-        assertEquals(outPut, systemOut().getHistory());
+        assertFuzzyEquals(outPut, systemOut().getHistory());
     }
 }

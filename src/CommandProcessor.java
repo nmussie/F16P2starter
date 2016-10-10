@@ -175,7 +175,7 @@ public class CommandProcessor {
                 System.out.println("The KVPair (|" + strings[1] + "|,|"
                         + strings[0] + "|)" + " is deleted from the tree.");
             }
-            if (!removeWork) {
+           // if (!removeWork) {
                 if (!tree.contains(artistHandle)) {
                     artist.remove(strings[0]);
                     //totalRemove(new Handle[] { artistHandle }, artist);
@@ -184,7 +184,7 @@ public class CommandProcessor {
                     song.remove(strings[1]);
                     //totalRemove(new Handle[] { songHandle }, song);
                 }
-            }
+            //}
         }
         else {
             if (tree.delete(pairSong)) {
@@ -195,7 +195,7 @@ public class CommandProcessor {
                 System.out.println("The KVPair (|" + strings[0] + "|,|"
                         + strings[1] + "|)" + " is deleted from the tree.");
             }
-            if (!removeWork) {
+           // if (!removeWork) {
                 if (!tree.contains(songHandle)) {
                     song.remove(strings[1]);
                     // totalRemove(new Handle[] {songHandle}, song);
@@ -204,7 +204,7 @@ public class CommandProcessor {
                     artist.remove(strings[0]);
                     // totalRemove( new Handle[]{artistHandle}, artist);
                 }
-            }
+            //}
         }
     }
 
@@ -242,8 +242,8 @@ public class CommandProcessor {
                             + song.get(mem.get(songsOfArtist[i])), false,
                             true);
                 }
-                totalRemove(new Handle[] { artHandle }, artist);
-                totalRemove(songsOfArtist, song);
+                //totalRemove(new Handle[] { artHandle }, artist);
+                //totalRemove(songsOfArtist, song);
             }
         }
         else {
@@ -258,8 +258,8 @@ public class CommandProcessor {
                     delete2(artist.get(mem.get(artistsOfSong[i])) + "<SEP>"
                             + value, true, true);
                 }
-                totalRemove(new Handle[] { songHandle }, song);
-                totalRemove(artistsOfSong, artist);
+                //totalRemove(new Handle[] { songHandle }, song);
+                //totalRemove(artistsOfSong, artist);
             }
         }
     }
