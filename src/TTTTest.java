@@ -57,9 +57,9 @@ public class TTTTest extends TestCase {
         coolVal = new Handle(25);
         bigKey = new Handle(34);
         bigVal = new Handle(23);
-        anotherPair = new KVPair(anotherKey, anotherVal);//larger
-        coolPair = new KVPair(coolKey, coolVal);//medium
-        pair = new KVPair(key, value);//small
+        anotherPair = new KVPair(anotherKey, anotherVal);
+        coolPair = new KVPair(coolKey, coolVal);
+        pair = new KVPair(key, value);
         bigGuy = new Handle(60);
     }
 
@@ -172,6 +172,10 @@ public class TTTTest extends TestCase {
             assertEquals(actual[i], list[i]);
         }
     }
+    
+    /**
+     * Tests adding on the left
+     */
     public void testAddLess()
     {
         tree.insert(anotherPair);
