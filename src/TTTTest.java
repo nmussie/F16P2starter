@@ -80,6 +80,11 @@ public class TTTTest extends TestCase {
     public void testDuplicateInsert() {
         tree.insert(pair);
         assertNull(tree.insert(pair));
+        assertFalse(tree.delete(coolPair));
+        assertTrue(tree.contains(key));
+        assertFalse(tree.contains(value));
+        //Node node = null;
+        //assertEquals(0, tree.getRoot().getDepth(node));
     }
 
     /**
@@ -91,6 +96,7 @@ public class TTTTest extends TestCase {
         tree.insert(anotherPair);
         tree.insert(coolPair);
         KVPair morePairs = new KVPair(key, anotherVal);
+        assertFalse(tree.delete(morePairs));
         tree.insert(morePairs);
         morePairs = new KVPair(anotherKey, value);
         tree.insert(morePairs);
@@ -106,6 +112,7 @@ public class TTTTest extends TestCase {
         tree.insert(morePairs);
         morePairs = new KVPair(bigKey, bigVal);
         tree.insert(morePairs);
+        assertEquals(tree.getRoot().getClass(), InternalNode.class);
         morePairs = new KVPair(bigVal, bigKey);
         tree.insert(morePairs);
         morePairs = new KVPair(bigKey, key);
@@ -142,5 +149,27 @@ public class TTTTest extends TestCase {
                 + "\n    2 6" + "\n    6 25" + "\n    7 2" + "\n  9 25 23 6"
                 + "\n    7 9" + "\n    9 25" + "\n    23 6" + "\n  34 23"
                 + "\n    25 7" + "\n    34 23", tree.toString());
+        assertNotNull(tree.delete(anotherPair));
+        Handle lilH = new Handle(1);
+        morePairs = new KVPair(lilH, value);
+        tree.insert(morePairs);
+        
+    }
+
+    /**
+     * Tests list
+     */
+    public void testList() {
+        Handle[] actual = new Handle[20];
+        for (int i = 0; i < 20; i++) {
+            Handle handle = new Handle(i);
+            actual[i] = handle;
+            KVPair pair2 = new KVPair(key, handle);
+            tree.insert(pair2);
+        }
+        Handle[] list = tree.list(key);
+        for (int i = 0; i < 20; i++) {
+            assertEquals(actual[i], list[i]);
+        }
     }
 }

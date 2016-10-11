@@ -145,9 +145,14 @@ public class CommandProcessor {
     }
 
     /**
+     * Delete function for command processor
      * 
      * @param in
+     *            is the string needed to be deleted
      * @param isSong
+     *            checks if deleting a song
+     * @param removeWork
+     *            is to see if remove is calling delete or not
      */
     public void delete2(String in, boolean isSong, boolean removeWork) {
 
@@ -209,21 +214,10 @@ public class CommandProcessor {
     }
 
     /**
-     * 
-     * @param array
-     * @param table
-     */
-    public void totalRemove(Handle[] array, HashTable table) {
-        for (int i = 0; i < array.length; i++) {
-            if (!tree.contains(array[i])) {
-                table.remove(table.get(mem.get(array[i])));
-            }
-        }
-    }
-
-    /**
+     * Remove method for command pro
      * 
      * @param in
+     *            String needed to be removed
      */
     public void remove3(String in) {
         int index = in.indexOf(" ");

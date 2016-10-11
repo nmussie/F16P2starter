@@ -34,7 +34,7 @@ public class Parser {
 
     private Scanner scanner;
     private CommandProcessor commandPro;
-    private int linenumber = 0;
+    // private int linenumber = 0;
 
     /**
      * This method is parsing the command line by line and executes the
@@ -48,7 +48,7 @@ public class Parser {
      *            from the string of the command file
      * @throws FileNotFoundException
      */
-    public Parser(int hSize, int bSize, String file) 
+    public Parser(int hSize, int bSize, String file)
             throws FileNotFoundException {
         commandPro = new CommandProcessor(hSize, bSize);
         File fp = new File(file);
@@ -62,19 +62,14 @@ public class Parser {
      */
     private void commands() {
         while (scanner.hasNextLine()) {
-            linenumber++;
-            /*if (linenumber == 254 || linenumber == 265)
-            {
-                print(commandPro.toString("print tree"));
-            }*/
             String command = scanner.next();
             String input = scanner.nextLine().trim();
             if (command.equals("insert")) {
                 commandPro.insert(input);
-            } 
+            }
             else if (command.equals("remove")) {
                 commandPro.remove3(input);
-            } 
+            }
             else if (command.equals("list")) {
                 commandPro.list(input);
             }

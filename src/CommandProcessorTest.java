@@ -38,6 +38,7 @@ public class CommandProcessorTest extends TestCase {
     private String print;
     private String print2;
     private String printTree;
+
     /**
      * sets up the test fields
      */
@@ -55,6 +56,10 @@ public class CommandProcessorTest extends TestCase {
      * Test the insert method
      */
     public void testInsert() {
+        commandPro.list(removeS);
+        assertFuzzyEquals(
+                "|Long Lonesome Blues| does not exist in the song database.",
+                systemOut().getHistory());
         commandPro.insert(insert);
         assertEquals(1, commandPro.getArtist().getSize());
         assertEquals(1, commandPro.getSong().getSize());
@@ -65,6 +70,7 @@ public class CommandProcessorTest extends TestCase {
         commandPro.toString(printTree);
         commandPro.delete2(insert, false, false);
         commandPro.toString(printTree);
+
     }
 
     /**
@@ -75,20 +81,23 @@ public class CommandProcessorTest extends TestCase {
         assertEquals(1, commandPro.getArtist().getSize());
         commandPro.remove3(remove);
         assertEquals(0, commandPro.getArtist().getSize());
-        //assertEquals(1, commandPro.getSong().getSize());
         commandPro.remove3(removeS);
         assertEquals(0, commandPro.getSong().getSize());
+        systemOut().clearHistory();
+        commandPro.remove3(removeS);
+        assertFuzzyEquals(
+                "long lonesome blues does not exist in the song database",
+                systemOut().getHistory());
     }
-    
+
     /**
-     * Tests the remove method 
+     * Tests the remove method
      */
     public void testRemove2() {
         commandPro.insert(insert);
         assertEquals(1, commandPro.getSong().getSize());
         commandPro.remove3(removeS);
         assertEquals(0, commandPro.getSong().getSize());
-        //assertEquals(1, commandPro.getArtist().getSize());
         commandPro.remove3(remove);
         assertEquals(0, commandPro.getArtist().getSize());
     }
@@ -98,11 +107,11 @@ public class CommandProcessorTest extends TestCase {
      */
     public void testPrint() {
         commandPro.insert(insert);
-        assertEquals("|Long Lonesome Blues| 5\n" + "total songs: 1", 
-                    commandPro.toString(print));
-        assertEquals("|Blind Lemon Jefferson| 0\n" + "total artists: 1", 
-                    commandPro.toString(print2));
-        assertEquals("Printing 2-3 tree:\n0 23 23 0", 
+        assertEquals("|Long Lonesome Blues| 5\n" + "total songs: 1",
+                commandPro.toString(print));
+        assertEquals("|Blind Lemon Jefferson| 0\n" + "total artists: 1",
+                commandPro.toString(print2));
+        assertEquals("Printing 2-3 tree:\n0 23 23 0",
                 commandPro.toString(printTree));
     }
 

@@ -57,13 +57,19 @@ public class LeafNodeTest extends TestCase {
         assertTrue(node.onlyFirstNode());
         node.insert(pair);
         assertTrue(node.isFull());
-        assertFalse(node.onlySecNode());
         node.setFirstPair(null);
-        assertTrue(node.onlySecNode());
         node.insert(pair);
         assertEquals(pair, node.getFirstPair());
         node.insert(coolPair);
         assertEquals(pair, node.getFirstPair());
     }
 
+    /**
+     * Tests is empty
+     */
+    public void testIsEmpty() {
+        assertTrue(node.isEmpty());
+        node.insert(pair);
+        assertFalse(node.isEmpty());
+    }
 }

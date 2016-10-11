@@ -114,13 +114,13 @@ public class TTT {
             if (found.getFirstPair().key().compareTo(handle) == 0) {
                 array[count] = found.getFirstPair().value();
                 count++;
-                realoc(array, count, false);
+                array = realoc(array, count, false);
             }
             if (found.getSecondPair() != null
                     && found.getSecondPair().key().compareTo(handle) == 0) {
                 array[count] = found.getSecondPair().value();
                 count++;
-                realoc(array, count, false);
+                array = realoc(array, count, false);
             }
             found = found.getNext();
             if (found == tail
@@ -157,27 +157,6 @@ public class TTT {
         }
         else {
             return array;
-        }
-    }
-
-    /**
-     * Removes every KVPair in the tree with handle as the key
-     * 
-     * @param handle
-     *            to be removed
-     * @param values
-     *            array of handles needed to removed
-     */
-    public void remove(Handle handle, Handle[] values) {
-        // Handle[] values = list(handle);
-        if (values == null || values.length == 0) {
-            return;
-        }
-        for (int i = 0; i < values.length; i++) {
-            KVPair artistPair = new KVPair(handle, values[i]);
-            KVPair songPair = new KVPair(values[i], handle);
-            delete(artistPair);
-            delete(songPair);
         }
     }
 

@@ -317,15 +317,6 @@ public class LeafNode implements Node {
     }
 
     /**
-     * True if only second pair is used
-     * 
-     * @return true if only second pair is used
-     */
-    public boolean onlySecNode() {
-        return firstPair == null && secondPair != null;
-    }
-
-    /**
      * Check first and second pairs to see where to insert to see where you can
      * insert
      * 
@@ -333,13 +324,13 @@ public class LeafNode implements Node {
      *            to be inserted
      */
     public void insert(KVPair pair) {
-        if (firstPair == null && secondPair == null) {
+        if (isEmpty()) {
             setFirstPair(pair);
         }
         else if (onlyFirstNode()) {
             setSecondPair(pair);
         }
-        else if (onlySecNode()) {
+        else if (firstPair == null && secondPair != null) {
             setFirstPair(pair);
         }
         if (isFull()) {

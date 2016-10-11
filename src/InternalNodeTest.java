@@ -76,9 +76,7 @@ public class InternalNodeTest extends TestCase {
         assertTrue(emptyNode.onlyFirstNode());
         emptyNode.insert(first);
         assertTrue(emptyNode.isFull());
-        assertFalse(emptyNode.onlySecNode());
         emptyNode.setFirstPair(null);
-        assertTrue(emptyNode.onlySecNode());
         emptyNode.insert(first);
         assertEquals(first, emptyNode.getFirstPair());
     }

@@ -73,13 +73,6 @@ public interface Node {
     public boolean onlyFirstNode();
 
     /**
-     * True if only second pair is used
-     * 
-     * @return true if only second pair is used
-     */
-    public boolean onlySecNode();
-
-    /**
      * Check first and second pairs to see where to insert to see where you can
      * insert
      * 

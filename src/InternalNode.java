@@ -369,15 +369,6 @@ public class InternalNode implements Node {
     }
 
     /**
-     * True if only second pair is used
-     * 
-     * @return true if only second pair is used
-     */
-    public boolean onlySecNode() {
-        return firstPair == null && secondPair != null;
-    }
-
-    /**
      * Check first and second pairs to see where to insert to see where you can
      * insert
      * 
@@ -391,7 +382,7 @@ public class InternalNode implements Node {
         else if (onlyFirstNode()) {
             setSecondPair(pair);
         }
-        else if (onlySecNode()) {
+        else if (firstPair == null && secondPair != null) {
             setFirstPair(pair);
         }
         if (isFull()) {
@@ -523,7 +514,7 @@ public class InternalNode implements Node {
                             return this;
                         }
                         else {
-                            
+
                             ((InternalNode) check).setMiddleChild(
                                     ((InternalNode) middle).getLeftChild());
                             ((InternalNode) middle).setLeftChild(
@@ -531,7 +522,8 @@ public class InternalNode implements Node {
                             ((InternalNode) middle).setMiddleChild(
                                     ((InternalNode) middle).getRightChild());
                             ((InternalNode) middle).setRightChild(null);
-                            check.setFirstPair(((InternalNode) check).getMiddleChild().getLeast());
+                            check.setFirstPair(((InternalNode) check)
+                                    .getMiddleChild().getLeast());
                             middle.setFirstPair(middle.getSecondPair());
                             middle.setSecondPair(null);
                             this.setFirstPair(middle.getLeast());
@@ -741,7 +733,7 @@ public class InternalNode implements Node {
                             check.setFirstPair(((InternalNode) check)
                                     .getMiddleChild().getLeast());
                             this.setFirstPair(middle.getLeast());
-                            
+
                             return this;
                         }
                         // check if right one is full
@@ -750,10 +742,13 @@ public class InternalNode implements Node {
                             getRightChild().setSecondPair(null);
                             ((InternalNode) check).setMiddleChild(
                                     ((InternalNode) right).getLeftChild());
-                            ((InternalNode) right).setLeftChild(((InternalNode) right).getMiddleChild());
-                            ((InternalNode) right).setMiddleChild(((InternalNode) right).getRightChild());
+                            ((InternalNode) right).setLeftChild(
+                                    ((InternalNode) right).getMiddleChild());
+                            ((InternalNode) right).setMiddleChild(
+                                    ((InternalNode) right).getRightChild());
                             ((InternalNode) right).setRightChild(null);
-                            right.setFirstPair(((InternalNode) right).getMiddleChild().getLeast());
+                            right.setFirstPair(((InternalNode) right)
+                                    .getMiddleChild().getLeast());
                             check.setFirstPair(((InternalNode) check)
                                     .getMiddleChild().getLeast());
                             this.setFirstPair(middle.getLeast());
@@ -828,7 +823,7 @@ public class InternalNode implements Node {
                             check.setFirstPair(((InternalNode) check)
                                     .getMiddleChild().getLeast());
                             middle.setSecondPair(null);
-                            //((InternalNode) middle).setMiddleChild(null);
+                            // ((InternalNode) middle).setMiddleChild(null);
                             this.setFirstPair(middle.getLeast());
                             this.setSecondPair(right.getLeast());
                             return this;
@@ -838,7 +833,7 @@ public class InternalNode implements Node {
                             this.setSecondPair(null);
                             ((InternalNode) middle).setRightChild(
                                     ((InternalNode) check).getLeftChild());
-                            
+
                             middle.setSecondPair(((InternalNode) middle)
                                     .getRightChild().getLeast());
                             this.setRightChild(null);
@@ -852,7 +847,6 @@ public class InternalNode implements Node {
                 return this;
             }
         }
-        
         return this;
     }
 
