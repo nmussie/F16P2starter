@@ -110,11 +110,11 @@ public class TTT {
         int count = 0;
         Handle[] array = new Handle[10];
         boolean finished = false;
-        while (/*found != tail && */!finished) {
+        while (/* found != tail && */!finished) {
             if (found.getFirstPair().key().compareTo(handle) == 0) {
-            array[count] = found.getFirstPair().value();
-            count++;
-            realoc(array, count, false);
+                array[count] = found.getFirstPair().value();
+                count++;
+                realoc(array, count, false);
             }
             if (found.getSecondPair() != null
                     && found.getSecondPair().key().compareTo(handle) == 0) {
@@ -123,11 +123,12 @@ public class TTT {
                 realoc(array, count, false);
             }
             found = found.getNext();
-            if (found == tail || found.getFirstPair().key().compareTo(handle) != 0) {
+            if (found == tail
+                    || found.getFirstPair().key().compareTo(handle) != 0) {
                 finished = true;
             }
         }
-        
+
         array = realoc(array, count, true);
         return array;
     }
@@ -158,7 +159,7 @@ public class TTT {
             return array;
         }
     }
-    
+
     /**
      * Removes every KVPair in the tree with handle as the key
      * 
@@ -179,7 +180,7 @@ public class TTT {
             delete(songPair);
         }
     }
-    
+
     /**
      * Deletes one instance of a KVPair
      * 
@@ -199,12 +200,13 @@ public class TTT {
             }
             else if (temp.isEmpty()) {
                 root = ((InternalNode) temp).getLeftChild();
+                temp = null;
             }
             return true;
         }
         return false;
     }
-    
+
     /**
      * Contains method for tree
      * 
