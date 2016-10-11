@@ -34,6 +34,7 @@ public class Parser {
 
     private Scanner scanner;
     private CommandProcessor commandPro;
+    private int linenumber = 0;
 
     /**
      * This method is parsing the command line by line and executes the
@@ -61,6 +62,11 @@ public class Parser {
      */
     private void commands() {
         while (scanner.hasNextLine()) {
+            linenumber++;
+            /*if (linenumber == 254 || linenumber == 265)
+            {
+                print(commandPro.toString("print tree"));
+            }*/
             String command = scanner.next();
             String input = scanner.nextLine().trim();
             if (command.equals("insert")) {

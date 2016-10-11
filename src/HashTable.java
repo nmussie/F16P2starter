@@ -83,13 +83,13 @@ public class HashTable {
         }
         morespace = false;
         currentSize++;
-        // hTable = moreSpace();
+        //hTable = moreSpace();
         int key = getKey(value);
         if (contains(key, value)) {
             currentSize--;
             return false;
         }
-        // currentSize++;
+        //currentSize++;
         hTable = moreSpace();
         if (morespace) {
             key = getKey(value);
@@ -240,6 +240,11 @@ public class HashTable {
             else if (!array[key].equals(errorHandle)
                     && value.equals(get(mem.get(array[key])))) {
                 return key;
+            }
+            if (i == array.length)
+            {
+                baseIndex++;
+                i = 1;
             }
             key = (baseIndex + i * i++) % array.length;
         }
