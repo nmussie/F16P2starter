@@ -57,9 +57,9 @@ public class TTTTest extends TestCase {
         coolVal = new Handle(25);
         bigKey = new Handle(34);
         bigVal = new Handle(23);
-        anotherPair = new KVPair(anotherKey, anotherVal);
-        coolPair = new KVPair(coolKey, coolVal);
-        pair = new KVPair(key, value);
+        anotherPair = new KVPair(anotherKey, anotherVal);//larger
+        coolPair = new KVPair(coolKey, coolVal);//medium
+        pair = new KVPair(key, value);//small
         bigGuy = new Handle(60);
     }
 
@@ -83,8 +83,8 @@ public class TTTTest extends TestCase {
         assertFalse(tree.delete(coolPair));
         assertTrue(tree.contains(key));
         assertFalse(tree.contains(value));
-        //Node node = null;
-        //assertEquals(0, tree.getRoot().getDepth(node));
+        // Node node = null;
+        // assertEquals(0, tree.getRoot().getDepth(node));
     }
 
     /**
@@ -153,7 +153,7 @@ public class TTTTest extends TestCase {
         Handle lilH = new Handle(1);
         morePairs = new KVPair(lilH, value);
         tree.insert(morePairs);
-        
+
     }
 
     /**
@@ -171,5 +171,12 @@ public class TTTTest extends TestCase {
         for (int i = 0; i < 20; i++) {
             assertEquals(actual[i], list[i]);
         }
+    }
+    public void testAddLess()
+    {
+        tree.insert(anotherPair);
+        tree.insert(coolPair);
+        tree.insert(pair);
+        assertEquals(2, tree.getRoot().getDepth(tree.getRoot()));
     }
 }

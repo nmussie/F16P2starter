@@ -80,4 +80,9 @@ public class InternalNodeTest extends TestCase {
         emptyNode.insert(first);
         assertEquals(first, emptyNode.getFirstPair());
     }
+    public void testGetDepth()
+    {
+        assertEquals(0, node.getDepth(null));
+    }
+
 }

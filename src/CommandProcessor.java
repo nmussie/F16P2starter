@@ -229,6 +229,7 @@ public class CommandProcessor {
             if (artHandle == null || songsOfArtist == null) {
                 System.out.println("|" + value + "| "
                         + "does not exist in the artist database.");
+                return;
             }
             else {
                 for (int i = 0; i < songsOfArtist.length; i++) {
@@ -246,6 +247,7 @@ public class CommandProcessor {
             if (songHandle == null || artistsOfSong == null) {
                 System.out.println("|" + value + "| "
                         + "does not exist in the song database.");
+                return;
             }
             else {
                 for (int i = 0; i < artistsOfSong.length; i++) {

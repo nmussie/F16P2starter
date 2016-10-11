@@ -77,6 +77,10 @@ public class CommandProcessorTest extends TestCase {
      * Test the remove method
      */
     public void testRemove() {
+        commandPro.remove3(remove);
+        assertEquals(0, commandPro.getArtist().getSize());
+        commandPro.remove3(removeS);
+        assertEquals(0, commandPro.getSong().getSize());
         commandPro.insert(insert);
         assertEquals(1, commandPro.getArtist().getSize());
         commandPro.remove3(remove);
